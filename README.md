@@ -1,5 +1,5 @@
 <p align="center">
-  <img  src="http://i.imgur.com/CAa894x.png" alt="Food Locker Logo"/>
+  <img  src="http://i.imgur.com/OUfhqcz.png" alt="Food Locker Logo"/>
 </p>
 
 ----------
