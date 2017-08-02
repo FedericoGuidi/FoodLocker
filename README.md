@@ -12,6 +12,6 @@
 
 Food Locker is a web app written in Ruby on Rails. It's a sort of social network where the main focus is your lifestyle: you can keep track of how healthy you eat, how much water you drink and how much you exercise. In addition to this, you can search original recipes through the database, where you can find recipes written by other users, and have a personal diary where you can comment your day.
 
-** How to run Food Locker **
+**How to run Food Locker**
 
-*TODO*
+*\*TODO\**
