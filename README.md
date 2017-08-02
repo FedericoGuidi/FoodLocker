@@ -14,4 +14,4 @@ Food Locker is a web app written in Ruby on Rails. It's a sort of social network
 
 ** How to run Food Locker **
 
-* TODO *
+*TODO*
