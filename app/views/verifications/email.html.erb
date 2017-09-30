@@ -1,0 +1,11 @@
+<h1>Insert email</h1>
+<h2>Provide your Facebook account email.</h2>
+<%= form_for(:verification, url:insert_email_url) do |f| %>
+    <div class="qr_form">
+        <%= f.label :mail %>
+        <%= f.text_field :mail, class: "form-control" %>
+        <%= f.submit 'Confirm', class: "btn btn-primary" %>
+        <%= link_to 'Logout', logout_path, method: :delete, class: "btn btn-danger", style: "margin-top: 5px; width:200px" %>
+        <%#= hidden_field_tag 'user', params[:user] %>
+    </div>
+<% end %>

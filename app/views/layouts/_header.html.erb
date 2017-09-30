@@ -1,7 +1,8 @@
 <header class="navbar navbar-fixed-top navbar-default">
     <div class="container">
-        <%= link_to image_tag("FoodLocker.png", alt: "FoodLocker", :size => "50x50"), root_path, id: "logo" %>
-        <%#= link_to image_tag("FoodLocker.png", alt: "FoodLocker", :size => "50x50") %>
+        <% if logged_in? || request.original_url != root_url %>
+            <%= link_to image_tag("Food_Locker_mini.png", alt: "Food Locker", :height => "50%", :width => "50%"), root_path, id: "logo" %>
+        <% end %>
         <nav>
             <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to "Home",   root_path %></li>

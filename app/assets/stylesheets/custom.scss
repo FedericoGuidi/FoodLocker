@@ -32,6 +32,16 @@ textarea {
   }
 }
 
+.jumbotron {
+    background-color: #ffffff;
+}
+
+/* google authentication */
+
+.google_auth {
+    margin-left: 200px;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -69,7 +79,7 @@ p {
   color: white;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 9px;
+  padding-top: 4px;
   font-weight: bold;
   &:hover {
     color: white;

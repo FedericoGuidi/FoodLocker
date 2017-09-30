@@ -5,28 +5,43 @@
     <div class="col-md-6 col-md-offset-3">
         <%= form_for(@user) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
-
+            
             <%= f.label :name %>
-            <%= f.text_field :name, class: 'form-control' %>
+            <% if !@user.fb %>
+                <%= f.text_field :name, class: 'form-control' %>
+            <% else %>
+                <%= f.text_field :name, class: 'form-control', :readonly => true %>
+            <% end %>
 
             <%= f.label :email %>
-            <%= f.email_field :email, class: 'form-control' %>
-        
-            <%= f.label :phone_number %> <i>(enables 2FA)</i>
-            <%= f.text_field :phone_number, class: 'form-control' %>
+            <% if !@user.fb %>
+                <%= f.email_field :email, class: 'form-control' %>
+            <% else %>
+                <%= f.email_field :email, class: 'form-control', :readonly => true %>
+            <% end %>
+            
+            <% if !@user.fb %>
+                <%= f.label :password %>
+                <%= f.password_field :password, class: 'form-control' %>
 
-            <%= f.label :password %>
-            <%= f.password_field :password, class: 'form-control' %>
-
-            <%= f.label :password_confirmation, "Confirmation" %>
-            <%= f.password_field :password_confirmation, class: 'form-control' %>
-
+                <%= f.label :password_confirmation, "Confirmation" %>
+                <%= f.password_field :password_confirmation, class: 'form-control' %>
+            <% end %>
             <%= f.submit "Save changes", class: "btn btn-primary" %>
         <% end %>
 
         <div class="gravatar_edit">
             <%= gravatar_for @user %>
             <a href="http://gravatar.com/emails" target="_blank">change</a>
+        </div>
+        <div class="google_auth">
+            <% if google_auth @user %>
+                You have 2FA enabled!
+                <%= button_to "Disable Google Authenticator", configure_path, :method => "delete", class: "btn btn-primary" %>
+            <% else %>
+                Do you want to enable Google Authenticator?
+                <%= button_to "Configure Google Authenticator", configure_path, :method => "get", class: "btn btn-primary" %>
+            <% end %>
         </div>
     </div>
 </div>

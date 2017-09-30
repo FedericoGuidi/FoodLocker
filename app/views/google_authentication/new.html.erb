@@ -1,0 +1,27 @@
+<%= javascript_include_tag 'jquery.qrcode.min.js' %>
+
+<script>
+    $(window).load(function(){
+        $("#qrcode").qrcode({
+            width: 200,
+            height: 200,
+            text: "<%= current_user.provisioning_uri %>" + "&issuer=Food%20Locker"
+        });
+    });
+</script>
+
+<h1>Google Authenticator Setup</h1>
+
+<div id="qrcode" class="qr_code"></div>
+<br/>
+
+<div style="margin:auto; width: 300px">Scan the QR Code and insert the code you see on your Google Authenticator app.</div>
+<br/>
+
+<div class="qr_form">
+    <%= form_for(:google_authentication, url: configure_path) do |f| %>
+        <%= f.label :code %>
+        <%= f.text_field :code, class: "form-control" %>
+        <%= f.submit "Configure", class: "btn btn-primary" %>
+    <% end %>
+</div>

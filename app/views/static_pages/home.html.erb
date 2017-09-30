@@ -18,14 +18,11 @@
     </div>
 <% else %>
     <div class="center jumbotron">
-        <h1>Welcome to FoodLocker</h1>
-<%= image_tag("FoodLocker.png", alt: "FoodLocker", :size => "260x180") %>
-        
-        <h2>
-            
-        </h2>
-        
+        <h1>Welcome to Food Locker!</h1>
+        <%= image_tag("FoodLocker.png", alt: "Food Locker", :height => "50%", :width => "50%") %>
+        <br/><br/>
         <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+        <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", class: "btn btn-lg btn-primary" %>
     </div>
 <% end %>
 

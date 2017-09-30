@@ -17,8 +17,8 @@ class User < ApplicationRecord
                       format: { with: VALID_EMAIL_REGEX },
                       uniqueness: { case_sensitive: false }
     has_secure_password
+    has_one_time_password
     validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-    validates :phone_number, presence: true, allow_nil: true
     
     # Returns the hash digest of the given string.
     def User.digest(string)
@@ -43,6 +43,34 @@ class User < ApplicationRecord
         digest = send("#{attribute}_digest")
         return false if digest.nil?
         BCrypt::Password.new(digest).is_password?(token)
+    end
+    
+    # Facebook Login
+    def self.from_omniauth(auth)
+        where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
+            user.provider = auth.provider
+            user.uid = auth.uid
+            user.name = auth.info.name
+            user.oauth_token = auth.credentials.token
+            user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+            user.email = auth.info.email
+            user.password = digest(new_token)
+            user.fb = true
+        end
+    end
+    
+    # Facebook Login with provided email
+    def self.from_omniauth_m(auth, mail)
+        where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
+            user.provider = auth.provider
+            user.uid = auth.uid
+            user.name = auth.info.name
+            user.oauth_token = auth.credentials.token
+            user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+            user.email = mail
+            user.password = digest(new_token)
+            user.fb = true
+        end
     end
     
     # Forgets a user.

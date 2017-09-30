@@ -1,16 +1,25 @@
 Rails.application.routes.draw do
+  get 'google_authentication/new'
+
   get 'password_resets/new'
 
   get 'password_resets/edit'
 
     root "static_pages#home"
-    get '/help',       to: 'static_pages#help'
-    get '/about',      to: 'static_pages#about'
-    get '/contact',    to: 'static_pages#contact'
-    get '/signup',     to: 'users#new'
-    get    '/login',   to: 'sessions#new'
-    post   '/login',   to: 'sessions#create'
-    delete '/logout',  to: 'sessions#destroy'
+    get '/configure',     to: 'google_authentication#new'
+    post '/configure',    to: 'google_authentication#create'
+    delete '/configure',  to: 'google_authentication#destroy'
+    get '/help',          to: 'static_pages#help'
+    get '/about',         to: 'static_pages#about'
+    get '/contact',       to: 'static_pages#contact'
+    get '/signup',        to: 'users#new'
+    get    '/login',      to: 'sessions#new'
+    post   '/login',      to: 'sessions#create'
+    delete '/logout',     to: 'sessions#destroy'
+    get '/verification',  to: 'verifications#new'
+    post '/verification', to: 'verifications#create'
+    get '/insert_email',  to: 'verifications#email'
+    post '/insert_email', to: 'verifications#create_email'
     resources :users do
         member do
             get :following, :followers
@@ -20,4 +29,13 @@ Rails.application.routes.draw do
     resources :password_resets,     only: [:new, :create, :edit, :update]
     resources :microposts,          only: [:create, :destroy]
     resources :relationships,       only: [:create, :destroy]
+    resources :verifications,       only: [:new, :create]
+    
+    # Facebook login
+    
+    match 'auth/:provider/callback', to: 'sessions#create_fb', via: [:get, :post]
+    match 'auth/failure', to: redirect('/'), via: [:get, :post]
+    match 'signout', to: 'sessions#destroy_fb', as: 'signout', via: [:get, :post]
+    #match 'insert_email', to: 'verifications#create_email', as: 'insert_email', via: [:get]
+    
 end

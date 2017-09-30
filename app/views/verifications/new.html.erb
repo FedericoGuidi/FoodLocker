@@ -1,0 +1,12 @@
+<h1>Verify</h1>
+<h2>Insert your Google Authenticator code.</h2>
+<%= form_for(:verification, url:verification_path) do |f| %>
+    <div class="qr_form">
+        <%= f.label :code %>
+        <%= f.text_field :code, class: "form-control" %>
+        <%= f.submit 'Continue Login', class: "btn btn-primary" %>
+        <%= link_to 'Logout', logout_path, method: :delete, class: "btn btn-danger", style: "margin-top: 5px; width:200px" %>
+        <%= hidden_field_tag 'id', params[:id] %>
+        <%= hidden_field_tag 'rem', params[:rem] %>
+    </div>
+<% end %>
