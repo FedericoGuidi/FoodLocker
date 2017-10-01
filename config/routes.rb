@@ -30,6 +30,9 @@ Rails.application.routes.draw do
     resources :microposts,          only: [:create, :destroy]
     resources :relationships,       only: [:create, :destroy]
     resources :verifications,       only: [:new, :create]
+    resources :conversations do
+        resources :messages
+    end
     
     # Facebook login
     

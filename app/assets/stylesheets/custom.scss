@@ -304,3 +304,15 @@ span.picture {
     background-color: white;
     border-color: #E7E7E7;
 }
+
+/* messages */
+.recipient {
+    float: left;
+    width: 60%;
+}
+
+.sender {
+    float: right;
+    width: 60%;
+    text-align: right;
+}
