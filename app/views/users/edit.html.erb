@@ -43,5 +43,7 @@
                 <%= button_to "Configure Google Authenticator", configure_path, :method => "get", class: "btn btn-primary" %>
             <% end %>
         </div>
+        <br/>
+        <%= button_to "Delete your account", self_destroy_user_path, action: :self_destroy, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
     </div>
 </div>
