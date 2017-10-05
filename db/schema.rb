@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171001203216) do
+ActiveRecord::Schema.define(version: 20171005134552) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 20171001203216) do
     t.string "oauth_token"
     t.datetime "oauth_expires_at"
     t.boolean "fb", default: false
+    t.string "nickname"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
