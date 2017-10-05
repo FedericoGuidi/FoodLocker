@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     post '/verification', to: 'verifications#create'
     get '/insert_email',  to: 'verifications#email'
     post '/insert_email', to: 'verifications#create_email'
+    get '/map', to: 'static_pages#map'
+    
     resources :users do
         member do
             get :following, :followers
