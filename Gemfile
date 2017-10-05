@@ -19,6 +19,7 @@ gem 'jbuilder',                '2.6.4'
 gem 'active_model_otp'
 gem 'omniauth'
 gem 'omniauth-facebook',       '4.0.0'
+gem 'jquery-turbolinks'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
