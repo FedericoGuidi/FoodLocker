@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     delete '/configure',  to: 'google_authentication#destroy'
     get '/help',          to: 'static_pages#help'
     get '/about',         to: 'static_pages#about'
+    get '/quiz',          to: 'quiz#new'
     get '/contact',       to: 'static_pages#contact'
     get '/signup',        to: 'users#new'
     get    '/login',      to: 'sessions#new'
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
     get '/insert_email',  to: 'verifications#email'
     post '/insert_email', to: 'verifications#create_email'
     get '/map', to: 'static_pages#map'
+    post '/quiz',   to: 'quiz#create'
     
     resources :users do
         member do

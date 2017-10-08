@@ -35,7 +35,9 @@
             <%= f.file_field :avatar %>
         <% end %>
         <div class="gravatar_edit">
+            <% if @user.avatar? %>
             <%= avatar_for(@user, "80") %>
+            <% end %>
         </div>
         <div class="google_auth">
             <% if google_auth @user %>

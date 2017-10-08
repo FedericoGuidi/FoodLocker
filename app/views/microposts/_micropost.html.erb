@@ -1,5 +1,8 @@
 <li id="micropost-<%= micropost.id %>">
+    <% if @user.avatar? %>
     <%= link_to avatar_for(micropost.user, "50"), micropost.user %>
+    <% end %>
+    
     <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
     <span class="content">
         <%= micropost.content %>
