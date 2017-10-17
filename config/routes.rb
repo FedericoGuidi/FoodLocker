@@ -24,12 +24,14 @@ Rails.application.routes.draw do
     post '/insert_email', to: 'verifications#create_email'
     get '/map', to: 'static_pages#map'
     post '/quiz',   to: 'quiz#create'
-    get    'suspend'          => 'sites#suspend'
+    get    'suspend'        => 'sites#suspend'
     get	 'specialoptions'   => 'food_locker#specialoptions'
     put    'sites'         	=> 'sites#suspend'
     post '/specialoptions'  =>  'food_locker#suspended'
     get    'ban'     => 'users#ban'
     put    'users'   => 'users#ban'
+    get    'promote' => 'users#promote'
+    put    'users'   => 'users#promote'
     
     resources :users do
         member do

@@ -6,7 +6,7 @@
     <% if current_user.admin? && !current_user?(user) %>
         | <%= link_to "delete", user, method: :delete,
                                       data: { confirm: "You sure?" } %>
-        <% if user.banned? %>|banned
+        <% if user.banned? %>| banned
       
       <% end %>
     <% end %>

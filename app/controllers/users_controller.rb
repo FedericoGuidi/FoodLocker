@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
                                           :following, :followers]
     before_action :correct_user,   only: [:edit, :update, :self_destroy]
-    before_action :admin_user,     only: [:destroy]
+    before_action :admin_user,     only: [:destroy, :ban, :unban, :promote, :demote]
     
     def index
         @users = User.paginate(page: params[:page])
@@ -21,16 +21,26 @@ class UsersController < ApplicationController
     def ban
         User.find(params[:id]).update_attributes(banned: true)
         	flash[:success] = "User banned"
-        	redirect_to users_path
+        	#redirect_to users_path
     end
     
     def unban
         User.find(params[:id]).update_attributes(banned: 'f')
         flash[:success] = "User unbanned"
-        redirect_to users_path
+        #redirect_to users_path
     end
     
+    def promote
+        User.find(params[:id]).update_attributes(admin: true)
+        flash[:success] << " and is now an admin"
+        #redirect_to users_path
+    end
     
+    def demote
+        User.find(params[:id]).update_attributes(admin: false)
+        flash[:success] << " and is not an admin"
+        #redirect_to users_path
+    end
     
     
     def new
@@ -58,8 +68,10 @@ class UsersController < ApplicationController
             flash[:success] = "Profile updated"
             if current_user.admin?
                 	    params[:user][:banned] == '1' ? ban : unban
-                	  else redirect_to @user
-                    end
+                        params[:user][:admin] == '1' ? promote : demote
+                        redirect_to users_path
+            else redirect_to @user
+            end
         else
             render 'edit'
         end 
