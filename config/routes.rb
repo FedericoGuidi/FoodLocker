@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'password_resets/edit'
 
     root "static_pages#home"
+    get	 'suspended'        => 'food_locker#suspended'
     get '/configure',     to: 'google_authentication#new'
     post '/configure',    to: 'google_authentication#create'
     delete '/configure',  to: 'google_authentication#destroy'
@@ -23,6 +24,12 @@ Rails.application.routes.draw do
     post '/insert_email', to: 'verifications#create_email'
     get '/map', to: 'static_pages#map'
     post '/quiz',   to: 'quiz#create'
+    get    'suspend'          => 'sites#suspend'
+    get	 'specialoptions'   => 'food_locker#specialoptions'
+    put    'sites'         	=> 'sites#suspend'
+    post '/specialoptions'  =>  'food_locker#suspended'
+    get    'ban'     => 'users#ban'
+    put    'users'   => 'users#ban'
     
     resources :users do
         member do
@@ -36,6 +43,7 @@ Rails.application.routes.draw do
     resources :microposts,          only: [:create, :destroy]
     resources :relationships,       only: [:create, :destroy]
     resources :verifications,       only: [:new, :create]
+    resources :sites
     resources :conversations do
         resources :messages
     end

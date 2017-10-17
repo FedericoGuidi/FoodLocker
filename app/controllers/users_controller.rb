@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
                                           :following, :followers]
     before_action :correct_user,   only: [:edit, :update, :self_destroy]
-    before_action :admin_user,     only: :destroy
+    before_action :admin_user,     only: [:destroy]
     
     def index
         @users = User.paginate(page: params[:page])
@@ -10,8 +10,28 @@ class UsersController < ApplicationController
     
     def show
         @user = User.find(params[:id])
+        if current_user.admin? && current_user!= @user
+            		redirect_to edit_user_path
+            	else
+                  @user = User.find(params[:id])
+            	end
         @microposts = @user.microposts.paginate(page: params[:page])
     end
+    
+    def ban
+        User.find(params[:id]).update_attributes(banned: true)
+        	flash[:success] = "User banned"
+        	redirect_to users_path
+    end
+    
+    def unban
+        User.find(params[:id]).update_attributes(banned: 'f')
+        flash[:success] = "User unbanned"
+        redirect_to users_path
+    end
+    
+    
+    
     
     def new
         @user = User.new
@@ -36,7 +56,10 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         if @user.update_attributes(user_params)
             flash[:success] = "Profile updated"
-            redirect_to @user
+            if current_user.admin?
+                	    params[:user][:banned] == '1' ? ban : unban
+                	  else redirect_to @user
+                    end
         else
             render 'edit'
         end 
@@ -71,7 +94,7 @@ class UsersController < ApplicationController
     private
         def user_params
             params.require(:user).permit(:name, :nickname, :email, :password,
-                                         :password_confirmation, :google_auth, :avatar)
+                                         :password_confirmation, :google_auth, :avatar, :banned)
         end
     
         # Before filters
@@ -79,7 +102,7 @@ class UsersController < ApplicationController
         # Confirms the correct user.
         def correct_user
             @user = User.find(params[:id])
-            redirect_to(root_url) unless current_user?(@user)
+            redirect_to(root_url) unless current_user?(@user) || current_user.admin?
         end
     
         # Confirms an admin user.

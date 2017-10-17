@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171008132046) do
+ActiveRecord::Schema.define(version: 20171017144448) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
@@ -66,6 +66,12 @@ ActiveRecord::Schema.define(version: 20171008132046) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
+  create_table "sites", force: :cascade do |t|
+    t.boolean "suspended"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -88,6 +94,7 @@ ActiveRecord::Schema.define(version: 20171008132046) do
     t.boolean "fb", default: false
     t.string "nickname"
     t.string "avatar"
+    t.boolean "banned", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

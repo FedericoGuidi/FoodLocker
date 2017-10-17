@@ -1,0 +1,17 @@
+<% provide(:title, "Special settings") %>
+<% provide(:button_text, 'Save changes') %>
+
+<h1>Update FoodLocker</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+ 
+  <%= form_for Site.find(1) do |f| %>
+     <%= f.label :suspended, class: "checkbox inline" do %>
+     <%= f.check_box :suspended, id: 'suspended' %>
+     <span>Suspend web site</span>
+     <% end %>
+     <br>
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  <% end %>
+  </div>
+</div>

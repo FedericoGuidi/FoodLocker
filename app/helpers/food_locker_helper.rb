@@ -1,0 +1,2 @@
+module FoodLockerHelper
+end
