@@ -10,11 +10,7 @@ class UsersController < ApplicationController
     
     def show
         @user = User.find(params[:id])
-        if current_user.admin? && current_user!= @user
-            		redirect_to edit_user_path
-            	else
-                  @user = User.find(params[:id])
-            	end
+        
         @microposts = @user.microposts.paginate(page: params[:page])
     end
     
@@ -65,8 +61,9 @@ class UsersController < ApplicationController
     def update
         @user = User.find(params[:id])
         if @user.update_attributes(user_params)
+            params[:user][:is_private] == '1' ? @user.update_attributes(is_private: true) : @user.update_attributes(is_private: false)
             flash[:success] = "Profile updated"
-            if current_user.admin?
+            if current_user.admin? && !current_user?(@user)
                 	    params[:user][:banned] == '1' ? ban : unban
                         params[:user][:admin] == '1' ? promote : demote
                         redirect_to users_path
@@ -106,7 +103,7 @@ class UsersController < ApplicationController
     private
         def user_params
             params.require(:user).permit(:name, :nickname, :email, :password,
-                                         :password_confirmation, :google_auth, :avatar, :banned)
+                                         :password_confirmation, :google_auth, :avatar, :banned, :is_private)
         end
     
         # Before filters

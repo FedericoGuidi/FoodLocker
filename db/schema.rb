@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017144448) do
+ActiveRecord::Schema.define(version: 20171018125732) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20171017144448) do
     t.string "nickname"
     t.string "avatar"
     t.boolean "banned", default: false
+    t.boolean "is_private", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

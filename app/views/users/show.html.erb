@@ -13,12 +13,18 @@
         <section class="stats">
             <%= render 'shared/stats' %>
         </section>
+        <% if current_user.admin? %>
+        <%= link_to 'Edit', edit_user_path %>
+        <% end %>
+        <% if !@user.is_private || (current_user.following?(@user) && @user.is_private) || current_user?(@user) || current_user.admin?%>
         <section>
             <% if current_user.id != @user.id %>
                 <%= link_to 'Private message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post'%>
             <% end %>
         </section>
+        <% end %>
     </aside>
+    <% if !@user.is_private || (current_user.following?(@user) && @user.is_private) || current_user?(@user) || current_user.admin? %>    
     <div class="col-md-8">
         <%= render 'follow_form' if logged_in? %>
         <% if @user.microposts.any? %>
@@ -29,4 +35,9 @@
             <%= will_paginate @microposts %>
         <% end %>
     </div>
+    <% else %>
+        Private Profile!
+    <% end %>
+    
+    
 </div>

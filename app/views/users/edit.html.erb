@@ -43,6 +43,13 @@
             <span>Admin</span>
            <% end %>
            <% end %>
+            <br>
+            
+            <%= f.label :is_private, class: "checkbox inline" do %>
+                <%= f.check_box :is_private %>
+            <span>Private Profile</span>
+           <% end %>
+        
            <br>
             <%= f.submit "Save changes", class: "btn btn-primary" %>
             <br/><br/>
