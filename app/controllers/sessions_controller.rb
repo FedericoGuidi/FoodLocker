@@ -36,7 +36,8 @@ class SessionsController < ApplicationController
     def create_fb
         user = User.from_omniauth(request.env["omniauth.auth"])
         if user.email.blank?
-            redirect_to insert_email_path
+            flash[:danger] = "You need to provide your email in order to sign-up with Facebook."
+            redirect_to new_user_path
         else
             user.update_attribute(:activated, true)
             user.save!

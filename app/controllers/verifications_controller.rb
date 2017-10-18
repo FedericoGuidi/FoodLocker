@@ -19,11 +19,10 @@ class VerificationsController < ApplicationController
     # Hidden Facebook mail
     
     def email
-        flash[:danger] = "Please provide your Facebook email."
-        redirect_to root_url
+        #flash[:danger] = "Please provide your Facebook email."
+        #redirect_to root_url
     end
     
     def create_email
-        
     end
 end

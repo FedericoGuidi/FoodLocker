@@ -1,3 +1,13 @@
+<script>
+document.getElementById('shareBtn').onclick = function() {
+  FB.ui({
+    method: 'share',
+    display: 'popup',
+    href: 'http://www.foodlocker.com<%= user_path %>',
+  }, function(response){});
+}
+</script>
+
 <% provide(:title, @user.name) %>
 <div class="row">
     <aside class="col-md-4">
@@ -20,6 +30,11 @@
         <section>
             <% if current_user.id != @user.id %>
                 <%= link_to 'Private message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post'%>
+            <% end %>
+        </section>
+        <section>
+            <% if current_user.id == @user.id %> 
+                <div id="shareBtn" class="btn btn-success clearfix">Share on Facebook</div>
             <% end %>
         </section>
         <% end %>
