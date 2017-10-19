@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     put    'users'   => 'users#ban'
     get    'promote' => 'users#promote'
     put    'users'   => 'users#promote'
+    get    'friends' => 'users#friends'
     
     resources :users do
         member do
