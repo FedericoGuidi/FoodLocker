@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     delete '/configure',  to: 'google_authentication#destroy'
     get '/help',          to: 'static_pages#help'
     get '/about',         to: 'static_pages#about'
-    get '/quiz',          to: 'quiz#new'
+    #get '/quiz',          to: 'quizzes#new'
     get '/contact',       to: 'static_pages#contact'
     get '/signup',        to: 'users#new'
     get    '/login',      to: 'sessions#new'
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     #get '/insert_email',  to: 'verifications#email'
     #post '/insert_email', to: 'verifications#create_email'
     get '/map', to: 'static_pages#map'
-    post '/quiz',   to: 'quiz#create'
+    #post '/quiz',   to: 'quiz#create'
     get    'suspend'        => 'sites#suspend'
     get	 'specialoptions'   => 'food_locker#specialoptions'
     put    'sites'         	=> 'sites#suspend'
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     put    'users'   => 'users#ban'
     get    'promote' => 'users#promote'
     put    'users'   => 'users#promote'
-    get    'friends' => 'users#friends'
+    post  '/quizzes/new',    to: 'quizzes#create'
     
     resources :users do
         member do
@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     resources :relationships,       only: [:create, :destroy]
     resources :verifications,       only: [:new, :create]
     resources :sites
+    resources :quizzes
     resources :conversations do
         resources :messages
     end

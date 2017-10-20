@@ -37,11 +37,6 @@ document.getElementById('shareBtn').onclick = function() {
                 <div id="shareBtn" class="btn btn-success clearfix">Share on Facebook</div>
             <% end %>
         </section>
-        <section>
-            <% if current_user.id == @user.id %> 
-                <%= link_to 'Friends', friends_path %>
-            <% end %>
-        </section>
         <% end %>
     </aside>
     <% if !@user.is_private || (current_user.following?(@user) && @user.is_private) || current_user?(@user) || current_user.admin? %>    

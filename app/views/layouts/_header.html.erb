@@ -20,7 +20,7 @@
                             <% if current_user.admin? %>
                                 <li><%= link_to "Special options", specialoptions_url %></li>
                             <% end %>
-                            <li><%= link_to "Quiz", quiz_url %></li>
+                            <li><%= link_to "Quiz", edit_quiz_path(current_user) %></li>
                             <li class="divider"></li>
                             <li>
                                 <%= link_to "Log out", logout_path, method: :delete %>
