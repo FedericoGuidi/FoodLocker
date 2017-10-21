@@ -24,10 +24,12 @@ class QuizzesController < ApplicationController
     def update
         @quiz=Quiz.find(params[:id])
          if @quiz.update_attributes(quiz_params)
+             
             flash[:success] = "Quiz updated"
             redirect_to root_url
+             
          else
-            render 'edit'
+             render 'edit'
         end
     end
     

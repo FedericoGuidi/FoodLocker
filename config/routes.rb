@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+    #resources :diaries
   get 'google_authentication/new'
 
   get 'password_resets/new'
@@ -48,6 +49,8 @@ Rails.application.routes.draw do
     resources :verifications,       only: [:new, :create]
     resources :sites
     resources :quizzes
+    resources :diaries
+    resources :days
     resources :conversations do
         resources :messages
     end

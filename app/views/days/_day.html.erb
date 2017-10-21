@@ -1,0 +1,43 @@
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+            <%= form_for @diary.days.last, :html => { :multipart => true } do |f| %>
+            
+                    <%=@diary.days.last.date%>
+                    <br>
+        
+                    <%=f.label :breakfast %>
+                    <%=f.text_field :breakfast %>
+                
+                    <%=f.label :breakfast_kcal %>
+                    <%=f.text_field :breakfast_kcal %>
+        
+                    <%=f.label :snack %>
+                    <%=f.text_field :snack %>
+        
+                    <%=f.label :snack_kcal %>
+                    <%=f.text_field :snack_kcal %>
+        
+                    <%=f.label :lunch %>
+                    <%=f.text_field :lunch %>
+                
+                    <%=f.label :lunch_kcal %>
+                    <%=f.text_field :lunch_kcal %>
+        
+                    <%=f.label :dinner %>
+                    <%=f.text_field :dinner %>
+        
+                    <%=f.label :dinner_kcal %>
+                    <%=f.text_field :dinner_kcal %>
+                   
+        
+        
+                <%= f.label :note %>
+                <%= f.text_area :note,size:'20x10', class: 'form-control' %>
+        
+            <br>
+            <%= f.submit "Save changes", class: "btn btn-primary" %>
+            <br/>
+            <% end %>
+    </div>
+</div>

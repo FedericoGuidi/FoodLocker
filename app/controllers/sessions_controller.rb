@@ -51,7 +51,11 @@ class SessionsController < ApplicationController
                 redirect_to new_verification_path(:id => user.id)
             else
                 log_in user
-                redirect_back_or user
+                if user.quiz.blank?
+                    redirect_to new_quiz_path
+                    else
+                    redirect_back_or user
+                end
             end
         end
     end

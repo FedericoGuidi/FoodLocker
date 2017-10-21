@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     has_many :microposts, dependent: :destroy
     has_one :quiz, dependent: :destroy
+    has_one :diary, dependent: :destroy
     has_many :active_relationships,  class_name: "Relationship",
                                      foreign_key: "follower_id",
                                      dependent: :destroy
@@ -87,6 +88,10 @@ class User < ApplicationRecord
         update_attribute(:activated_at, Time.zone.now)
     end
 
+    def create_diary
+        Diary.create(user_id: self.id, id: self.id)
+    end
+
     # Sends activation email.
     def send_activation_email
         UserMailer.account_activation(self).deliver_now
@@ -143,5 +148,6 @@ class User < ApplicationRecord
             self.activation_token  = User.new_token
             self.activation_digest = User.digest(activation_token)
         end
+                        
     
 end

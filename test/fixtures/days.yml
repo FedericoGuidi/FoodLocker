@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  references: 
+  date: 2017-10-21
+  breakfast: MyString
+  breakfast_kcal: MyString
+  lunch: MyString
+  lunch_kcal: MyString
+  dinner: MyString
+  dinner_kcal: MyString
+  snack: MyString
+  snack_kcal: MyString
+
+two:
+  references: 
+  date: 2017-10-21
+  breakfast: MyString
+  breakfast_kcal: MyString
+  lunch: MyString
+  lunch_kcal: MyString
+  dinner: MyString
+  dinner_kcal: MyString
+  snack: MyString
+  snack_kcal: MyString

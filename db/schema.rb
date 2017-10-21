@@ -10,13 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018125732) do
+ActiveRecord::Schema.define(version: 20171021151324) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "days", force: :cascade do |t|
+    t.integer "diary_id"
+    t.date "date"
+    t.string "breakfast"
+    t.string "breakfast_kcal"
+    t.string "lunch"
+    t.string "lunch_kcal"
+    t.string "dinner"
+    t.string "dinner_kcal"
+    t.string "snack"
+    t.string "snack_kcal"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["diary_id"], name: "index_days_on_diary_id"
+  end
+
+  create_table "diaries", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_diaries_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|

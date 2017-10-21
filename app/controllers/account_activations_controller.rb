@@ -5,6 +5,7 @@ class AccountActivationsController < ApplicationController
             user.activate
             log_in user
             flash[:success] = "Account activated!"
+            user.create_diary!
             redirect_to new_quiz_path
         else
             flash[:danger] = "Invalid activation link"

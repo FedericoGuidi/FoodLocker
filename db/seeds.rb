@@ -14,6 +14,8 @@ User.create!(name:  "Example User",
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
+Diary.create!(user_id: "1")
+Day.create!(diary_id: "1")
 
 99.times do |n|
   name  = Faker::Name.name
