@@ -32,6 +32,54 @@ document.getElementById('shareBtn').onclick = function() {
                 <%= link_to 'Private message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post'%>
             <% end %>
         </section>
+        
+        <section>
+        Indice di massa corporea: 
+            <% imc = (((current_user.quiz.weight.to_f)/(current_user.quiz.height.to_f*current_user.quiz.height.to_f)).round(2)) %>
+            <% if imc>=40.00 %>
+                <%= imc %> Obesità GRAVISSIMA
+            <% elsif imc>=35.00 && imc<=39.99 %>
+                <%= imc %> Obesità GRAVE
+            <% elsif imc>=30.00 && imc<=34.99 %>
+                <%= imc %> Obesità moderata
+            <% elsif imc>=25.00 && imc<=29.99 %>
+                <%= imc %> Sovrappeso
+            <% elsif imc>=18.50 && imc<=24.99 %>
+                <%= imc %> Regolare
+            <% elsif imc>=17.50 && imc<=18.49 %>
+                <%= imc %> Leggermente sottopeso
+            <% elsif imc>=16.00 && imc<=17.49 %>
+                <%= imc %> Visibilmente sottopeso
+            <% else %>
+                <%= imc %> GRAVE magrezza
+            <% end %>
+           
+        </section>
+        
+        <section>
+            <% kcal=current_user.diary.days.last.breakfast_kcal.to_i+current_user.diary.days.last.snack_kcal.to_i+current_user.diary.days.last.lunch_kcal.to_i+current_user.diary.days.last.dinner_kcal.to_i %>
+            <% if (current_user.quiz.kcal.to_i)<=(kcal+200) && (current_user.quiz.kcal.to_i)>=(kcal-200) %>
+                Hai raggiunto il tuo obiettivo giornaliero!
+            <% else %>
+                Devi lavorare sul tuo obiettivo!
+            <% end %>
+         
+        </section>
+        
+        <section>
+            Devi raggiungere il tuo obiettivo!
+            <%= current_user.quiz.target_weight %>
+        
+        </section>
+        
+        <section>
+            <% if current_user.quiz.sport %>
+                Stai facendo attività fisica
+            <% else %>
+                Devi lavorare di più sullo sport
+            <% end %>
+        
+        </section>
         <section>
             <% if current_user.id == @user.id %> 
                 <div id="shareBtn" class="btn btn-success clearfix">Share on Facebook</div>
@@ -59,6 +107,5 @@ document.getElementById('shareBtn').onclick = function() {
             <h2>Private Profile</h2>
         </div>
     <% end %>
-    
     
 </div>
