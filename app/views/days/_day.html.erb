@@ -1,10 +1,20 @@
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-            <%= form_for @diary.days.last, :html => { :multipart => true } do |f| %>
-            
                     <%=@diary.days.last.date%>
                     <br>
+            You still have to drink: <%= current_user.quiz.water.to_f-@diary.days.last.water.to_f %>
+            <br>
+            You still have to eat: <%= current_user.quiz.kcal.to_i-(@diary.days.last.breakfast_kcal.to_i+@diary.days.last.snack_kcal.to_i+@diary.days.last.lunch_kcal.to_i+@diary.days.last.dinner_kcal.to_i)%>
+            <br>
+            <%= (((current_user.quiz.weight.to_f-current_user.quiz.target_weight.to_f)/(1.5))*7).ceil %>
+            days until your goal!!
+        
+            <%= form_for @diary.days.last, :html => { :multipart => true } do |f| %>
+                    
+                    <br>
+                    
+                    
         
                     <%=f.label :breakfast %>
                     <%=f.text_field :breakfast %>
@@ -29,6 +39,9 @@
         
                     <%=f.label :dinner_kcal %>
                     <%=f.text_field :dinner_kcal %>
+        
+                    <%=f.label :water %>
+                    <%=f.text_field :water %>
                    
         
         
@@ -39,5 +52,7 @@
             <%= f.submit "Save changes", class: "btn btn-primary" %>
             <br/>
             <% end %>
+        <br>
+        <td><%= link_to 'Index', days_path %></td>
     </div>
 </div>

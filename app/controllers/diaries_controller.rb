@@ -1,7 +1,7 @@
 class DiariesController < ApplicationController
   # GET /diaries
   # GET /diaries.json
-  protect_from_forgery with: :null_session
+  #protect_from_forgery with: :null_session
   
   
   def index
@@ -26,7 +26,7 @@ class DiariesController < ApplicationController
   # POST /diaries
   # POST /diaries.json
   def create
-      @diary=current_user.build_diary(diary_params)
+      @diary=current_user.build(diary_params)
       if @diary.save
           @diary.update_attribute(:id, current_user.id)
           flash[:success] = "Diary created"

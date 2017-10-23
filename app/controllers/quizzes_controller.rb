@@ -40,7 +40,7 @@ class QuizzesController < ApplicationController
     private
     
     def quiz_params
-        params.require(:quiz).permit(:name, :gender, :height, :weight, :age, :water, :sport, :sport_time, :target_weight)
+        params.require(:quiz).permit(:name, :gender, :height, :weight, :age, :water, :sport, :sport_time, :target_weight, :kcal)
     end
     
     

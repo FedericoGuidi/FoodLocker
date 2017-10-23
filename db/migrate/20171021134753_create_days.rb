@@ -11,6 +11,7 @@ class CreateDays < ActiveRecord::Migration[5.1]
       t.string :dinner_kcal
       t.string :snack
       t.string :snack_kcal
+      
       t.string :note
 
       t.timestamps

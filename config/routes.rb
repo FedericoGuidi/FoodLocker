@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     get    'promote' => 'users#promote'
     put    'users'   => 'users#promote'
     post  '/quizzes/new',    to: 'quizzes#create'
+    post  '/diaries/new',    to: 'diaries#create'
     
     resources :users do
         member do

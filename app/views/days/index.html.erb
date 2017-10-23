@@ -1,0 +1,9 @@
+<% provide(:title, 'All Days') %>
+<h1>All days</h1>
+
+<ul class="days">
+    <% current_user.diary.days.each do |day| %>
+        <td><%= link_to day.date, day %></td>
+    <% end %>
+</ul>
+

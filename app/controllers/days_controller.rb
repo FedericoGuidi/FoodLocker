@@ -4,6 +4,14 @@ class DaysController < ApplicationController
         @day=Day.new
     end
     
+    def index
+        @days = Day.paginate(page: params[:page])
+    end
+    
+    def show
+        @day = Day.find(params[:id])
+    end
+    
     def create
         @day=diary.days.build(day_params)
         if @day.save
@@ -40,6 +48,6 @@ class DaysController < ApplicationController
     private
     
         def day_params
-            params.require(:day).permit(:date,:breakfast,:breakfast_kcal,:lunch,:lunch_kcal,:dinner,:dinner_kcal,:snack,:snack_kcal,:note)
+            params.require(:day).permit(:date,:breakfast,:breakfast_kcal,:lunch,:lunch_kcal,:dinner,:dinner_kcal,:snack,:snack_kcal,:water,:note)
         end
 end
