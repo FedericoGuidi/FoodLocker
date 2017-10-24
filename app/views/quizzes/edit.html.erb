@@ -2,29 +2,32 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <%= form_for @quiz, :html => { :multipart => true } do |f| %>
-            <%= f.label :name %>
+            <%= (f.label :name, "What's your name?") %>
                 <%= f.text_field :name, class: 'form-control' %>
-            <%= f.label :gender %>
+            <%= (f.label :gender, "Are you a male or a female?") %>
                 <h6>(Insert F or M)</h6>
                 <%= f.text_field :gender, class: 'form-control' %>
-            <%= f.label :height %>
+            <%= (f.label :height, "How tall are you?") %>
+                <h6>(Insert your height in cm)</h6>
                 <%= f.text_field :height, class: 'form-control' %>
-            <%= f.label :weight %>
+            <%= (f.label :weight, "How much do you weigh?") %>
+                <h6>(Insert your weight in kg)</h6>
                 <%= f.text_field :weight, class: 'form-control' %>
-            <%= f.label :age %>
+            <%= (f.label :age, "How old are you?") %>
                 <%= f.text_field :age, class: 'form-control' %>
-            <%= f.label :sport %>
+            <%= (f.label :sport, "Do you pratice any sport?") %>
                 <br>
                 <%= f.check_box :sport , class: 'form-control' %>
                 <br>
-            <%= f.label :sport_time %>
+            <%= (f.label :sport_time, "How much do you work out?") %>
+                <h6>(Insert how much do you work out in minutes)</h6>
                 <%= f.text_field :sport_time, class: 'form-control' %>
-            <%= f.label :water %>
+            <%= (f.label :water, "How much water do you drink?") %>
+                <h6>(Insert how much water do you drink in liters)</h6>
                 <%= f.text_field :water, class: 'form-control' %>
-            <%= f.label :target_weight %>
+            <%= (f.label :target_weight, "What's your weight target?") %>
+                <h6>(Insert your weight target in kg)</h6>
                 <%= f.text_field :target_weight, class: 'form-control' %>
-            <%= f.label :kcal %>
-                <%= f.text_field :kcal, class: 'form-control' %>
             <br>
             <%= f.submit "Save changes", class: "btn btn-primary" %>
             <br/>

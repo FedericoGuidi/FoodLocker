@@ -34,24 +34,24 @@ document.getElementById('shareBtn').onclick = function() {
         </section>
         
         <section>
-        Indice di massa corporea: 
+        Your body mass index category is: 
             <% imc = (((current_user.quiz.weight.to_f)/(current_user.quiz.height.to_f*current_user.quiz.height.to_f)).round(2)) %>
             <% if imc>=40.00 %>
-                <%= imc %> Obesità GRAVISSIMA
+                <%= imc %> Obese Class III (Very severely obese)
             <% elsif imc>=35.00 && imc<=39.99 %>
-                <%= imc %> Obesità GRAVE
+                <%= imc %> Obese Class II (Severely obese)
             <% elsif imc>=30.00 && imc<=34.99 %>
-                <%= imc %> Obesità moderata
+                <%= imc %> Obese Class I (Moderately obese)
             <% elsif imc>=25.00 && imc<=29.99 %>
-                <%= imc %> Sovrappeso
+                <%= imc %> Overweight
             <% elsif imc>=18.50 && imc<=24.99 %>
-                <%= imc %> Regolare
+                <%= imc %> Normal (healthy weight)	
             <% elsif imc>=17.50 && imc<=18.49 %>
-                <%= imc %> Leggermente sottopeso
+                <%= imc %> Underweight
             <% elsif imc>=16.00 && imc<=17.49 %>
-                <%= imc %> Visibilmente sottopeso
+                <%= imc %> Severely underweight
             <% else %>
-                <%= imc %> GRAVE magrezza
+                <%= imc %> Very severely underweight
             <% end %>
            
         </section>
@@ -59,24 +59,24 @@ document.getElementById('shareBtn').onclick = function() {
         <section>
             <% kcal=current_user.diary.days.last.breakfast_kcal.to_i+current_user.diary.days.last.snack_kcal.to_i+current_user.diary.days.last.lunch_kcal.to_i+current_user.diary.days.last.dinner_kcal.to_i %>
             <% if (current_user.quiz.kcal.to_i)<=(kcal+200) && (current_user.quiz.kcal.to_i)>=(kcal-200) %>
-                Hai raggiunto il tuo obiettivo giornaliero!
+                You have reached your daily kcals!
             <% else %>
-                Devi lavorare sul tuo obiettivo!
+                You have to eat more!
             <% end %>
          
         </section>
         
         <section>
-            Devi raggiungere il tuo obiettivo!
+            You have to work harder to reach your target weight:
             <%= current_user.quiz.target_weight %>
         
         </section>
         
         <section>
             <% if current_user.quiz.sport %>
-                Stai facendo attività fisica
+                You are doing physical activity! Good Work!
             <% else %>
-                Devi lavorare di più sullo sport
+                You have to work more on your physical activity! Hold on!
             <% end %>
         
         </section>
