@@ -2,6 +2,7 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <%= form_for @quiz, :html => { :multipart => true } do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
             <%= (f.label :name, "What's your name?") %>
                 <%= f.text_field :name, class: 'form-control' %>
             <%= (f.label :gender, "Are you a male or a female?") %>

@@ -51,7 +51,7 @@ class SessionsController < ApplicationController
                 redirect_to new_verification_path(:id => user.id)
             else
                 log_in user
-                user.create_diary
+                user.create_diary if user.diary.blank?
                 if user.quiz.blank?
                     redirect_to new_quiz_path
                     else

@@ -34,24 +34,40 @@ document.getElementById('shareBtn').onclick = function() {
         </section>
         
         <section>
-        Your body mass index category is: 
+        Your body mass index category is: <br>
             <% imc = (((current_user.quiz.weight.to_f)/(current_user.quiz.height.to_f*current_user.quiz.height.to_f)).round(2)) %>
+            <div>
             <% if imc>=40.00 %>
-                <%= imc %> Obese Class III (Very severely obese)
+                <font color = "#ff0000"><%= imc %> Obese Class III (Very severely obese)</font>
+            </div>
+            <div>
             <% elsif imc>=35.00 && imc<=39.99 %>
-                <%= imc %> Obese Class II (Severely obese)
+                <font color = "#ff6600"><b><%= imc %> Obese Class II (Severely obese)</b></font>
+            </div>
+            <div>
             <% elsif imc>=30.00 && imc<=34.99 %>
-                <%= imc %> Obese Class I (Moderately obese)
+                <font color = "#ff9933"><b><%= imc %> Obese Class I (Moderately obese)</b></font>
+            </div>
+            <div>
             <% elsif imc>=25.00 && imc<=29.99 %>
-                <%= imc %> Overweight
+                <font color = "#ffcc00"><b><%= imc %> Overweight</b></font>
+            </div>
+            <div>
             <% elsif imc>=18.50 && imc<=24.99 %>
-                <%= imc %> Normal (healthy weight)	
+                <font color = "#00cc00"><b><%= imc %> Normal (healthy weight)</b></font>
+            </div>
+            <div>
             <% elsif imc>=17.50 && imc<=18.49 %>
-                <%= imc %> Underweight
+                <font color = "#ff9933"><b><%= imc %> Underweight</b></font>
+            </div>
+            <div>
             <% elsif imc>=16.00 && imc<=17.49 %>
-                <%= imc %> Severely underweight
+                <font color = "#ff6600"><b><%= imc %> Severely underweight</b></font>
+            </div>
+            <div>
             <% else %>
-                <%= imc %> Very severely underweight
+                <font color = "#ff0000"><b><%= imc %> Very severely underweight</b></font>
+            </div>
             <% end %>
            
         </section>
@@ -59,24 +75,32 @@ document.getElementById('shareBtn').onclick = function() {
         <section>
             <% kcal=current_user.diary.days.last.breakfast_kcal.to_i+current_user.diary.days.last.snack_kcal.to_i+current_user.diary.days.last.lunch_kcal.to_i+current_user.diary.days.last.dinner_kcal.to_i %>
             <% if (current_user.quiz.kcal.to_i)<=(kcal+200) && (current_user.quiz.kcal.to_i)>=(kcal-200) %>
-                You have reached your daily kcals!
+            <div>
+                <font color = "#00cc00">You have reached your daily kcals!</font>
+            </div>
+            <div>
             <% else %>
-                You have to eat more!
+                <font color = "#ff0000">You have to eat more!</font>
+            </div>
             <% end %>
          
         </section>
         
         <section>
-            You have to work harder to reach your target weight:
-            <%= current_user.quiz.target_weight %>
+            You have to work harder to reach your target weight: <br>
+            <b><%= current_user.quiz.target_weight %></b>
         
         </section>
         
         <section>
             <% if current_user.quiz.sport %>
-                You are doing physical activity! Good Work!
+            <div>
+                <font color = "#00cc00">You are doing physical activity! Good Work!</font>
+            </div>
             <% else %>
-                You have to work more on your physical activity! Hold on!
+            <div>
+                <font color = "#ff0000">You have to work more on your physical activity! Hold on!</font>
+            </div>
             <% end %>
         
         </section>
