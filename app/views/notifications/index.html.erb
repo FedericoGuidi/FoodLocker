@@ -1,0 +1,34 @@
+<% provide(:title, 'Notifications') %>
+<h1>Notifications</h1>
+
+<% if !current_user.notifications.any? %>
+    <% if !current_user.eat_time.blank? %>
+        <% if current_user.eat_time.to_s(:time) <= DateTime.now.to_s(:time) %>
+            <% current_user.notifications.create(content: "Remember to eat!", time: current_user.eat_time, ntype: 1) %>
+        <% end %>
+    <% end %>
+    <% if !current_user.drink_time.blank? %>
+        <% if current_user.drink_time.to_s(:time) <= DateTime.now.to_s(:time) %>
+            <% current_user.notifications.create(content: "Remember to drink!", time: current_user.drink_time, ntype: 2) %>
+        <% end %>
+    <% end %>
+    <% if !current_user.workout_time.blank? %>
+        <% if current_user.workout_time.to_s(:time) <= DateTime.now.to_s(:time) %>
+            <% current_user.notifications.create(content: "Remember to exercise!", time: current_user.workout_time, ntype: 3) %>
+        <% end %>
+    <% end %>
+    <% if !current_user.weight_time.blank? %>
+        <% if current_user.weight_time.to_s(:time) <= DateTime.now.to_s(:time) %>
+            <% current_user.notifications.create(content: "Remember to update your weight!", time: current_user.weight_time, ntype: 4) %>
+        <% end %>
+    <% end %>
+<% end %>
+<%# if current_user.notifications.last.time.to_s!=DateTime.now.to_date.to_s %>
+    <%# @diary.days.create(date: DateTime.now.to_date) %>
+<%# end %>
+
+<ul class="notifications">
+    <% current_user.notifications.each do |notification| %>
+        <%=notification.time.to_s(:time)%> | <%= notification.content %> <%= link_to 'x', notification_path(notification), method: :delete %><br>
+    <% end %>
+</ul>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023150214) do
+ActiveRecord::Schema.define(version: 20171024131202) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 20171023150214) do
     t.string "picture"
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "content"
+    t.time "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "ntype"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "quizzes", force: :cascade do |t|
@@ -122,6 +132,10 @@ ActiveRecord::Schema.define(version: 20171023150214) do
     t.string "avatar"
     t.boolean "banned", default: false
     t.boolean "is_private", default: false
+    t.time "eat_time"
+    t.time "drink_time"
+    t.time "workout_time"
+    t.time "weight_time"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

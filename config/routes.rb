@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     resources :quizzes
     resources :diaries
     resources :days
+    resources :notifications
     resources :conversations do
         resources :messages
     end

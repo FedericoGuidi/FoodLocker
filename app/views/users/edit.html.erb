@@ -49,10 +49,23 @@
                 <%= f.check_box :is_private %>
             <span>Private Profile</span>
            <% end %>
+            
+            <br>
+            <h4>Notification Settings</h4>
+            <%= f.label :eat_time %>
+            <%= f.text_field(:eat_time, :value => !current_user.eat_time ? '' : current_user.eat_time.strftime("%H:%M"), class: 'form-control')%>
+            <%= f.label :drink_time %>
+             <%= f.text_field(:drink_time, :value => !current_user.drink_time ? '' : current_user.drink_time.strftime("%H:%M"), class: 'form-control')%>
+            <%= f.label :workout_time %>
+             <%= f.text_field(:workout_time, :value => !current_user.workout_time ? '' : current_user.workout_time.strftime("%H:%M"), class: 'form-control')%>
+            <%= f.label :weight_time %>
+             <%= f.text_field(:weight_time, :value => !current_user.weight_time ? '' : current_user.weight_time.strftime("%H:%M"), class: 'form-control')%>
         
            <br>
             <%= f.submit "Save changes", class: "btn btn-primary" %>
             <br/><br/>
+            
+        <h4>Avatar</h4>
             <%= f.file_field :avatar %>
         <% end %>
         <div class="gravatar_edit">

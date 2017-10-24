@@ -103,7 +103,7 @@ class UsersController < ApplicationController
     private
         def user_params
             params.require(:user).permit(:name, :nickname, :email, :password,
-                                         :password_confirmation, :google_auth, :avatar, :banned, :is_private)
+                                         :password_confirmation, :google_auth, :avatar, :banned, :is_private, :eat_time, :drink_time, :workout_time, :weight_time)
         end
     
         # Before filters
