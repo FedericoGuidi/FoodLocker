@@ -1,0 +1,28 @@
+<% provide(:title, 'All recipes') %>
+<h1>All recipes</h1>
+
+<h6>Insert the title or the ingredient you are looking for</h6>
+ <%= form_tag search_path, method: 'get' do  %>
+     <%= text_field_tag :search, params[:search] %> 
+        <h6>Insert kcal max</h6>
+        <%= text_field_tag :kcal_max, params[:search] %> 
+     <%= submit_tag "Search", name: nil %>
+     
+ <% end %>
+ 
+
+ <%= link_to "New recipe", new_recipe_path, class: "btn btn-primary" %>
+ <br>
+ <br>
+
+<%= will_paginate %>
+
+<ul class="recipes">
+    <% @recipes.each do |recipe| %>
+        <%= link_to recipe.title, recipe_path(recipe) %>
+        <br>
+    <% end %>
+
+</ul>
+
+<%= will_paginate %>

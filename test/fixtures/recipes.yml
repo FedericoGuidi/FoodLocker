@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  photo: MyString
+  title: MyString
+  kcal: MyString
+  ingredients: MyString
+  directions: MyString
+
+two:
+  user: two
+  photo: MyString
+  title: MyString
+  kcal: MyString
+  ingredients: MyString
+  directions: MyString

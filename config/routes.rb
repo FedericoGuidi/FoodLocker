@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     put    'users'   => 'users#promote'
     post  '/quizzes/new',    to: 'quizzes#create'
     post  '/diaries/new',    to: 'diaries#create'
+    get 'search' => 'recipes#search'
     
     resources :users do
         member do
@@ -53,6 +54,7 @@ Rails.application.routes.draw do
     resources :diaries
     resources :days
     resources :notifications
+    resources :recipes
     resources :conversations do
         resources :messages
     end

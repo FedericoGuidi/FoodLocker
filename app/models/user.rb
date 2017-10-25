@@ -3,6 +3,7 @@ class User < ApplicationRecord
     has_one :quiz, dependent: :destroy
     has_one :diary, dependent: :destroy
     has_many :notifications, dependent: :destroy
+    has_many :recipes
     has_many :active_relationships,  class_name: "Relationship",
                                      foreign_key: "follower_id",
                                      dependent: :destroy
