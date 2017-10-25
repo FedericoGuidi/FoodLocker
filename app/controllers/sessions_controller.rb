@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
                     else
                         log_in user
                         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-                        
+                        user.create_diary if user.diary.blank?
                         if user.quiz.blank?
                             redirect_to new_quiz_path
                         else

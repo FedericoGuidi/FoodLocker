@@ -93,6 +93,17 @@ class User < ApplicationRecord
         Diary.create(user_id: self.id, id: self.id)
     end
 
+    def check_day
+        if !self.diary.days.any?
+            self.diary.days.create(date: DateTime.now.to_date)
+        else
+            if self.diary.days.last.date.to_s!=DateTime.now.to_date.to_s
+                self.diary.days.create(date:DateTime.now.to_date)
+            end
+        end
+        
+    end
+
     # Sends activation email.
     def send_activation_email
         UserMailer.account_activation(self).deliver_now

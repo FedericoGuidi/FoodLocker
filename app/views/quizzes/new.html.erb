@@ -9,7 +9,7 @@
                 <h6>(Insert F or M)</h6>
                 <%= f.text_field :gender, class: 'form-control' %>
             <%= (f.label :height, "How tall are you?") %>
-                <h6>(Insert your height in cm)</h6>
+                <h6>(Insert your height in m)</h6>
                 <%= f.text_field :height, class: 'form-control' %>
             <%= (f.label :weight, "How much do you weigh?") %>
                 <h6>(Insert your weight in kg)</h6>
@@ -24,11 +24,13 @@
                 <h6>(Insert how much do you work out in minutes)</h6>
                 <%= f.text_field :sport_time, class: 'form-control' %>
             <%= (f.label :water, "How much water do you drink?") %>
-                <h6>(Insert how much water do you drink in liters)</h6>
+                <h6>(Insert how much water do you drink in liters per day)</h6>
                 <%= f.text_field :water, class: 'form-control' %>
             <%= (f.label :target_weight, "What's your weight target?") %>
                 <h6>(Insert your weight target in kg)</h6>
                 <%= f.text_field :target_weight, class: 'form-control' %>
+            <%= (f.label :kcal, "Daily kcals") %>
+                <%= f.text_field :kcal, class: 'form-control' %>
             <br>
             <%= f.submit "Save changes", class: "btn btn-primary" %>
             <br/>

@@ -8,6 +8,9 @@ class NotificationsController < ApplicationController
         @notification = Notification.new
     end
     
+    def show
+    end
+    
     def create
         @notification=current_user.notifications.build(notification_params)
         if @notification.save
