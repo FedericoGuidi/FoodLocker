@@ -20,6 +20,7 @@ gem 'active_model_otp'
 gem 'omniauth'
 gem 'omniauth-facebook',       '4.0.0'
 gem 'jquery-turbolinks'
+gem 'koala'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'

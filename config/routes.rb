@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     post  '/quizzes/new',    to: 'quizzes#create'
     post  '/diaries/new',    to: 'diaries#create'
     get 'search' => 'recipes#search'
+    get 'friends' => 'users#friends'
     
     resources :users do
         member do

@@ -33,6 +33,7 @@ document.getElementById('shareBtn').onclick = function() {
             <% end %>
         </section>
         
+        <% if current_user.id == @user.id %>
         <section>
         Your body mass index category is: <br>
             <% imc = (((current_user.quiz.weight.to_f)/(current_user.quiz.height.to_f*current_user.quiz.height.to_f)).round(2)) %>
@@ -80,13 +81,16 @@ document.getElementById('shareBtn').onclick = function() {
             <% else %>
                 <font color = "#ff0000">You have to work more on your physical activity! Hold on!</font>
             <% end %>
-        
         </section>
+        <% end %>
         <br>
         <br>
         <section>
             <% if current_user.id == @user.id %> 
                 <div id="shareBtn" class="btn btn-success clearfix">Share on Facebook</div>
+            <% end %>
+            <% if current_user.fb %>
+                <%= link_to "Facebook Friends", friends_path, class: "btn btn-success clearfix" %>
             <% end %>
         </section>
         <% end %>

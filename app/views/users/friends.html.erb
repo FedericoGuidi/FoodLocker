@@ -1,0 +1,10 @@
+<h1>Facebook Friends</h1>
+
+<% @friends.each do |friend| %>
+    <% if User.find_by(uid: friend["id"]).nil? %>
+        <%= friend["name"] %> doesn't use Food Locker anymore :(
+    <% else %>
+        <%= link_to friend["name"], user_path(User.find_by(uid: friend["id"]).id) %>
+    <% end %>
+    <br>
+<% end %>

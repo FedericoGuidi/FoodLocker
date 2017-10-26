@@ -41,17 +41,18 @@ class SessionsController < ApplicationController
     
     def create_fb
         user = User.from_omniauth(request.env["omniauth.auth"])
+        user.create_diary if user.diary.blank?
         if user.email.blank?
             flash[:danger] = "You need to provide your email in order to sign-up with Facebook."
             redirect_to new_user_path
         else
             user.update_attribute(:activated, true)
-            user.save!
+            user.save
+            user.create_diary if user.diary.blank?
             if user.google_auth
                 redirect_to new_verification_path(:id => user.id)
             else
                 log_in user
-                user.create_diary if user.diary.blank?
                 if user.quiz.blank?
                     redirect_to new_quiz_path
                     else

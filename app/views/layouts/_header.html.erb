@@ -4,6 +4,7 @@
             <%= link_to image_tag("Food_Locker_mini.png", alt: "Food Locker", :height => "50%", :width => "50%"), root_path, id: "logo" %>
         <% end %>
         <nav>
+            <% if request.original_fullpath != new_quiz_path %>
             <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to "Home",   root_path %></li>
                 <li><%= link_to "Help",   help_path %></li>
@@ -34,6 +35,7 @@
                     <li><%= link_to "Log in", login_path %></li>
                 <% end %>
             </ul>
+            <% end %>
         </nav>
     </div>
 </header>
