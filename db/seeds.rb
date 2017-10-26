@@ -45,3 +45,17 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+# Creating recipes
+file = File.open("db/recipes.txt", "rb")
+contents = file.read
+contents = contents.force_encoding('UTF-8').gsub("\u2028", " ")
+recipes = contents.split("|")
+
+(0..122).step(4) do |n|
+    title = recipes[n].split(":")[1]
+    kcal = recipes[n+1].split(":")[1]
+    ingredients = recipes[n+2].split(":")[1]
+    directions = recipes[n+3].split(":")[1]
+    Recipe.create!(user_id: 1, title: title, kcal: kcal, ingredients: ingredients, directions: directions)
+end
