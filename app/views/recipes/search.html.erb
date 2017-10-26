@@ -1,10 +1,10 @@
- <h1>searching for '<%= params[:search] %>'</h1>
+ <h1>Searching for '<%= params[:search] %>'</h1>
 
  <% if @data.empty? %>
    <h1>no results found</h1>
  <% end %>
 
- <% @data.each do |s| %>
-   <%= s.title %>
-   <%= s.created_at %><br>
+ <% @data.each do |recipe| %>
+   <%= link_to recipe.title, recipe_path(recipe) %>
+        <br>
 <% end %>
