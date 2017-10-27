@@ -6,6 +6,8 @@ RSpec.describe User, :type => :model do
       email: "pippo@pluto.it",
       password: "paperino",
       password_confirmation: "paperino"
+     
+      
       ) }
 
     it "is valid with valid attributes" do
@@ -32,6 +34,7 @@ RSpec.describe User, :type => :model do
         subject.password_confirmation = "bbbbbbbb"
         expect(subject).to_not be_valid
     end
+    
 
     it "password should have a minimum length" do
         subject.password = "short"
