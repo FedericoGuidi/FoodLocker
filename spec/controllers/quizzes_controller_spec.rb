@@ -2,9 +2,17 @@ require 'spec_helper'
 
 describe QuizzesController, type: :controller do
     
+    before(:all) do
+        @quiz = create(:quiz)
+    end
+    
+    after(:all) do
+        @quiz.user.destroy
+    end
+    
     describe "GET #new" do
         it "renders the :new template" do
-            log_in(User.first)
+            log_in(@quiz.user)
             get :new
             expect(response).to be_success
         end
@@ -12,75 +20,45 @@ describe QuizzesController, type: :controller do
     
     describe "GET #edit" do
         it "renders the :edit template" do
-            log_in(User.first)
-            get :edit
+            log_in(@quiz.user)
+            get :edit, params: { id: @quiz.id }
             expect(response).to be_success
         end
     end
     
-    describe "PUT update" do
-        before :each do
-            @quiz=Factory(:quiz, name: "Chiara", gender:"F", height:"1.70", weight: "70", age: "22", water: "3", sport:"true", sport_time:"40", target_weight:"55", kcal:"1300")
-        end
-        
+    describe "PUT #update" do
         context "valid attributes" do
-            it "located the requested @quiz" do
-                put :update, id: @quiz, quiz: Factory.attributes_for(:quiz)
-                response.should redirect_to @quiz
-            end
-        
             it "changes @quiz's attributes" do
-                put :update, id: @quiz, 
-                    quiz: Factory.attributes_for(:quiz, name: "Chiara", gender:"F", height:"1.70", weight: "70", age: "22", water: "3", sport:"true", sport_time:"40", target_weight:"55", kcal:"1300")
-                    @quiz.reload
-                    @quiz.name.should eq("Chiara")
-                    @quiz.gender.should eq("F")
-                    @quiz.height.should eq("1.70")
-                    @quiz.weight.should eq("70")
-                    @quiz.age.should eq("22")
-                    @quiz.water.should eq("3")
-                    @quiz.sport.should eq("true")
-                    @quiz.sport_time.should eq("40")
-                    @quiz.target_weight.should eq("55")
-                    @quiz.kcal.should eq("1300")
-                    
+                put :update, params: { id: @quiz.id, quiz: attributes_for(:quiz) }
+                expect(response).to redirect_to root_url
             end
-        
-           it "redirects to the updated quiz" do
-                put :update, id: @quiz, quiz: Factory.attributes_for(:quiz)
-                response.should redirect_to @quiz
-           end
         end
         
-    context "invalid attributes" do
-        it "locates the requested @quiz" do
-            put :update, id: @quiz, quiz: Factory.attributes_for(:invalid_contact)
-            assigns(:quiz).should eq(@quiz)      
-        end
-    
-        it "does not change @contact's attributes" do
-            put :update, id: @quiz, 
-            quiz: Factory.attributes_for(:quiz, name: nil, gender:"F", height:"1.70", weight: "70", age: "22", water: "3", sport:"true", sport_time:"40", target_weight:"55", kcal:"1300")
-            @quiz.reload
-                    @quiz.name.should_not eq("Chiara")
-                    @quiz.gender.should eq("F")
-                    @quiz.height.should eq("1.70")
-                    @quiz.weight.should eq("70")
-                    @quiz.age.should eq("22")
-                    @quiz.water.should eq("3")
-                    @quiz.sport.should eq("true")
-                    @quiz.sport_time.should eq("40")
-                    @quiz.target_weight.should eq("55")
-                    @quiz.kcal.should eq("1300")
-        end
-    
-        it "re-renders the edit method" do
-            put :update, id: @quiz, contact: Factory.attributes_for(:invalid_contact)
-            response.should render_template :edit
+        context "invalid attributes" do
+            it "re-renders the edit method" do
+                put :update, params: {id: @quiz.id, quiz: attributes_for(:invalid_quiz)}
+                expect(response).to be_success
+            end
         end
     end
-
-end    
+    
+    describe "POST #create" do
+        context "valid attributes" do
+            it "create a @quiz for user" do
+                log_in(@quiz.user)
+                post :create, params: { id: @quiz.id, quiz: attributes_for(:quiz)}
+                expect(response).to redirect_to root_url
+            end
+        end
+        
+        context "invalid attributes" do
+            it "re-renders the new method" do
+                log_in(@quiz.user)
+                post :create, params: { id: @quiz.id, quiz: attributes_for(:invalid_quiz)}
+                expect(response).to be_success
+            end
+        end
+    end
 end
             
             

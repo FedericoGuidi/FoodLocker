@@ -21,6 +21,7 @@ gem 'omniauth'
 gem 'omniauth-facebook',       '4.0.0'
 gem 'jquery-turbolinks'
 gem 'koala'
+gem 'factory_bot_rails'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'

@@ -1,12 +1,12 @@
-factory :user do |f|
-  f.name { "Pippo" }
-  f.email {"pippo@pippo.it"}
-  f.password {"paperino"}
-  f.password_confirmation {"paperino"}
-  
-     
-end
-
-factory :invalid_user, parent: :user do |f|
-  f.name nil
+FactoryBot.define do
+    factory :user do
+        name "Pippo"
+        email "pippo@pippo.it"
+        password "paperino"
+        password_confirmation "paperino"
+    end
+    
+    factory :invalid_user, parent: :user do
+        name nil
+    end
 end

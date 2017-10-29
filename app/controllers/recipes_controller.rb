@@ -28,7 +28,7 @@ class RecipesController < ApplicationController
             flash[:success]= "#{@recipe.title} inserted!"
             redirect_to root_url
         else
-            render 'static_pages/home'
+            render 'new'
         end
     end
     
