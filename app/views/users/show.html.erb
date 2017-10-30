@@ -1,11 +1,11 @@
 <script>
-document.getElementById('shareBtn').onclick = function() {
-  FB.ui({
-    method: 'share',
-    display: 'popup',
-    href: 'http://www.foodlocker.com<%= user_path %>',
-  }, function(response){});
-}
+    document.getElementById('shareBtn').onclick = function() {
+      FB.ui({
+        method: 'share',
+        display: 'popup',
+        href: 'http://www.foodlocker.com<%= user_path %>',
+      }, function(response){});
+    }
 </script>
 
 <% provide(:title, @user.name) %>
@@ -87,7 +87,9 @@ document.getElementById('shareBtn').onclick = function() {
         <br>
         <section>
             <% if current_user.id == @user.id %> 
-                <div id="shareBtn" class="btn btn-success clearfix">Share on Facebook</div>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.foodlocker.com<%= user_path %>" target="_blank" class="btn btn-success clearfix">
+                Share on Facebook
+            </a>
             <% end %>
             <% if current_user.fb %>
                 <%= link_to "Facebook Friends", friends_path, class: "btn btn-success clearfix" %>
