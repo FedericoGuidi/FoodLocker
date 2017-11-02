@@ -10,6 +10,7 @@ require 'cucumber/rails'
 # If you'd prefer to use XPath, just uncomment this line and adjust any
 # selectors in your step definitions to use the XPath syntax.
 # Capybara.default_selector = :xpath
+# Capybara.javascript_driver = :webkit
 
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how
@@ -56,3 +57,45 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+Before do
+    Site.create!(id: "1", suspended: "false")
+    
+    # Test Admin creation
+    User.create!(name:  "Example User",
+             email: "example@railstutorial.org",
+             password:              "foobar",
+             password_confirmation: "foobar",
+             admin: true,
+             activated: true,
+             activated_at: Time.zone.now)
+    Diary.create!(user_id: 1)
+    Day.create!(diary_id: 1)
+    
+    #Test user creation
+    User.create!(name:  "Prova",
+                 email: "food-1@locker.com",
+                 password: "password",
+                 password_confirmation: "password",
+                 activated: true,
+                 activated_at: Time.zone.now)
+    Quiz.create!(user_id: 2, name: "Pippo",
+                gender: "M",
+                height: "1.70",
+                weight: "65",
+                age: "20",
+                water: "3",
+                sport: true,
+                sport_time: "45",
+                target_weight: "60",
+                kcal: "1300")
+    Diary.create!(user_id: 2)
+    Day.create!(diary_id: 2, date: DateTime.new(2017,10,22))
+    
+    User.create!(name:  "Privato",
+                 email: "food-2@locker.com",
+                 password: "password",
+                 password_confirmation: "password",
+                 activated: true,
+                 activated_at: Time.zone.now,
+                 is_private: true)
+end

@@ -29,7 +29,6 @@ Day.create!(diary_id: "1")
                activated_at: Time.zone.now)
   Diary.create!(user_id: n+2)
   Day.create!(diary_id: n+2, date: DateTime.new(2017,10,22))
-
 end
 
 users = User.order(:created_at).take(6)

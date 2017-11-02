@@ -4,5 +4,5 @@ I want to have personal profile
 So that I can logout from my session
 
 Scenario: Logout
-When I go to login page
+Given the user logged in
 Then I should be able to logout
