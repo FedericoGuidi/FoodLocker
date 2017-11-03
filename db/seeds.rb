@@ -16,6 +16,16 @@ User.create!(name:  "Admin User",
              activated_at: Time.zone.now)
 Diary.create!(user_id: "1")
 Day.create!(diary_id: "1")
+Quiz.create!(user_id: 1, name: "Admin",
+                gender: "M",
+                height: "1.70",
+                weight: "65",
+                age: "22",
+                water: "3",
+                sport: true,
+                sport_time: "45",
+                target_weight: "60",
+                kcal: "1300")
 
 99.times do |n|
   name  = Faker::Name.name

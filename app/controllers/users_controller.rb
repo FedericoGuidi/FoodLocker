@@ -62,12 +62,17 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         if @user.update_attributes(user_params)
             params[:user][:is_private] == '1' ? @user.update_attributes(is_private: true) : @user.update_attributes(is_private: false)
-            flash[:success] = "Profile updated"
-            if current_user.admin? && !current_user?(@user)
-                	    params[:user][:banned] == '1' ? ban : unban
-                        params[:user][:admin] == '1' ? promote : demote
-                        redirect_to users_path
-            else redirect_to @user
+            if params[:user][:avatar].present?
+                render :crop
+            else
+                flash[:success] = "Profile updated"
+                if current_user.admin? && !current_user?(@user)
+                            params[:user][:banned] == '1' ? ban : unban
+                            params[:user][:admin] == '1' ? promote : demote
+                            redirect_to users_path
+                else
+                    redirect_to @user
+                end
             end
         else
             render 'edit'
@@ -111,7 +116,7 @@ class UsersController < ApplicationController
     private
         def user_params
             params.require(:user).permit(:name, :nickname, :email, :password,
-                                         :password_confirmation, :google_auth, :avatar, :banned, :is_private, :eat_time, :drink_time, :workout_time, :weight_time)
+                                         :password_confirmation, :google_auth, :avatar, :banned, :is_private, :eat_time, :drink_time, :workout_time, :weight_time, :crop_x, :crop_y, :crop_w, :crop_h)
         end
     
         # Before filters

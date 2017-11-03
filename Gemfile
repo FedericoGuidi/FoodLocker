@@ -3,8 +3,11 @@ source 'https://rubygems.org'
 gem 'rails',                   '5.1.2'
 gem 'bcrypt',                  '3.1.11'
 gem 'faker',                   '1.7.3'
+
 gem 'carrierwave',             '1.1.0'
 gem 'mini_magick',             '4.7.0'
+gem 'rails-assets-jcrop', source: 'https://rails-assets.org'
+
 gem 'fog',                     '1.40.0'
 gem 'will_paginate',           '3.1.5'
 gem 'bootstrap-will_paginate', '1.0.0'

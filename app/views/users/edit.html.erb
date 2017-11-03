@@ -70,7 +70,7 @@
         <% end %>
         <div class="gravatar_edit">
             <% if @user.avatar? %>
-            <%= avatar_for(@user, "80") %>
+            <%= image_tag @user.avatar.thumb.url %>
             <% end %>
         </div>
         <div class="google_auth">
