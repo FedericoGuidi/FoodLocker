@@ -34,6 +34,9 @@
         </section>
         
         <% if current_user.id == @user.id %>
+            <% if current_user.diary.days.last.nil? %>
+               <% current_user.check_day %>
+            <% end %>
         <section>
         Your body mass index category is: <br>
             <% imc = (((current_user.quiz.weight.to_f)/(current_user.quiz.height.to_f*current_user.quiz.height.to_f)).round(2)) %>
