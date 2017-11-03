@@ -61,7 +61,7 @@ Before do
     Site.create!(id: "1", suspended: "false")
     
     # Test Admin creation
-    User.create!(name:  "Example User",
+    User.create!(name: "Example User",
              email: "example@railstutorial.org",
              password:              "foobar",
              password_confirmation: "foobar",
@@ -78,7 +78,7 @@ Before do
                  password_confirmation: "password",
                  activated: true,
                  activated_at: Time.zone.now)
-    Quiz.create!(user_id: 2, name: "Pippo",
+    Quiz.create!(user_id: 2, id: 2, name: "Pippo",
                 gender: "M",
                 height: "1.70",
                 weight: "65",
@@ -88,7 +88,7 @@ Before do
                 sport_time: "45",
                 target_weight: "60",
                 kcal: "1300")
-    Diary.create!(user_id: 2)
+    Diary.create!(user_id: 2, id: 2)
     Day.create!(diary_id: 2, date: DateTime.new(2017,10,22))
     
     User.create!(name:  "Privato",
@@ -98,4 +98,18 @@ Before do
                  activated: true,
                  activated_at: Time.zone.now,
                  is_private: true)
+    
+    # Follow relationships
+    user1 = User.first
+    user2 = User.find(2)
+    user1.follow(user2)
+    user2.follow(user1)
+    
+    # Demo recipe
+    Recipe.create!(user_id: 1, 
+                   title: "Spiedini di frutta e cioccolato",
+                   kcal: "266",
+                   ingredients: " 100 g di ananas fresco – 1 banana – 25 g burro – 200 g cioccolato fondente – 300 g fragole.",
+                   directions: "(x 6 persone) infilzare alternativamente fragole, rondelle di banane e cubetti di ananas su uno spiedino di legno. Fondere il cioccolato fondente a bagnomaria insieme al burro. Immergere gli spiedini di frutta nel cioccolato fuso, quindi lasciarli asciugare su un piano ricoperto da carta forno fino a che il cioccolato non si sarà indurito. Possono essere serviti sia a temperatura ambiente che freddi e possono essere preparati anche usando tutti i tipi di frutta che desiderate come per esempio uva, melone, anguria, pesche, pesche noci, spicchi di agrumi (mandarino e mandarancio). Il cioccolato delle ricetta può essere sostituito con un mix di succhi di frutta senza zucchero, succo di limone, arancia e/o pompelmo. Preparate questo “condimento” in un contenitore dalla forma di allungata (per esempio una caraffa) e gustate gli spiedini di frutta dopo averli immersi nel vostro succo dalla miscela segreta!")
+    
 end
