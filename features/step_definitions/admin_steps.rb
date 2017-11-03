@@ -1,6 +1,6 @@
 Given "the admin logged in" do
 	visit login_path
-    fill_in 'Email', with: 'example@railstutorial.org'
+    fill_in 'Email', with: 'admin@foodlocker.com'
     fill_in 'Password', with: 'foobar'
     click_button 'Log in'
 end

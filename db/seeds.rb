@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Site.create!(id: "1", suspended: "false")
-User.create!(name:  "Example User",
-             email: "example@railstutorial.org",
+User.create!(name:  "Admin User",
+             email: "admin@foodlocker.com",
              password:              "foobar",
              password_confirmation: "foobar",
              admin: true,
@@ -19,7 +19,7 @@ Day.create!(diary_id: "1")
 
 99.times do |n|
   name  = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
+  email = "example-#{n+1}@foodlocker.com"
   password = "password"
   User.create!(name:  name,
                email: email,

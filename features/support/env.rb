@@ -61,8 +61,8 @@ Before do
     Site.create!(id: "1", suspended: "false")
     
     # Test Admin creation
-    User.create!(name: "Example User",
-             email: "example@railstutorial.org",
+    User.create!(name: "Admin User",
+             email: "admin@foodlocker.com",
              password:              "foobar",
              password_confirmation: "foobar",
              admin: true,
