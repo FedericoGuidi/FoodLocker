@@ -7,13 +7,13 @@
         <br>
         <div class="day-stats">
             <% if (current_user.quiz.water.to_f-@diary.days.last.water.to_f) > 0 %>
-                You still have to drink: <%= current_user.quiz.water.to_f-@diary.days.last.water.to_f %>
+                You still have to drink: <%= pluralize(current_user.quiz.water.to_f-@diary.days.last.water.to_f, "litre") %> of water.
             <% else %>
-                <b>Great!</b> Today you have drunk at least <%= current_user.quiz.water.to_f %> water litres!
+                <b>Great!</b> Today you have drunk at least <%= pluralize(current_user.quiz.water.to_f, "litre") %> litres of water!
             <% end %>
             <br>
             <% if (@diary.days.last.breakfast_kcal.to_i+@diary.days.last.snack_kcal.to_i+@diary.days.last.lunch_kcal.to_i+@diary.days.last.dinner_kcal.to_i) < current_user.quiz.kcal.to_i-50 %>
-                You still have to eat: <%= current_user.quiz.kcal.to_i-(@diary.days.last.breakfast_kcal.to_i+@diary.days.last.snack_kcal.to_i+@diary.days.last.lunch_kcal.to_i+@diary.days.last.dinner_kcal.to_i)%>
+                You still have to eat: <%= current_user.quiz.kcal.to_i-(@diary.days.last.breakfast_kcal.to_i+@diary.days.last.snack_kcal.to_i+@diary.days.last.lunch_kcal.to_i+@diary.days.last.dinner_kcal.to_i)%> kcal.
             <% elsif (@diary.days.last.breakfast_kcal.to_i+@diary.days.last.snack_kcal.to_i+@diary.days.last.lunch_kcal.to_i+@diary.days.last.dinner_kcal.to_i) > current_user.quiz.kcal.to_i+50 %>
                 Today you have eaten a lot!
             <% else %>

@@ -1,9 +1,17 @@
+<% provide(:title, @recipe.title) %>
 <h1> <%= @recipe.title %></h1>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2" style="text-align: center">
+            <%= image_tag @recipe.photo.url if @recipe.photo? %>
+        </div>
+    </div>
 
-<%= image_tag @recipe.photo.url if @recipe.photo? %>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h4>Kcals: <%= @recipe.kcal %></h4>
 
-<h4>Kcals: <%= @recipe.kcal %></h4>
+        <p><b>Ingredients:</b> <%= @recipe.ingredients %></p>
 
-<p>Ingredients: <%= @recipe.ingredients %></p>
-
-<p>Directions: <%= @recipe.directions %></p>
+        <p><b>Directions:</b> <%= @recipe.directions %></p>
+    </div>
+</div>

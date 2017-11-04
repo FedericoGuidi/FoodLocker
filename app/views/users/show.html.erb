@@ -71,21 +71,28 @@
             <br><br>
         
             <% kcal=current_user.diary.days.last.breakfast_kcal.to_i+current_user.diary.days.last.snack_kcal.to_i+current_user.diary.days.last.lunch_kcal.to_i+current_user.diary.days.last.dinner_kcal.to_i %>
-            <% if (current_user.quiz.kcal.to_i)<=(kcal+200) && (current_user.quiz.kcal.to_i)>=(kcal-200) %>
-                <font color = "#00cc00">You have reached your daily kcals!</font>
-            <% else %>
+            
+            <% if (kcal) < current_user.quiz.kcal.to_i-50 %>
                 <font color = "#ff0000">You have to eat more!</font>
+            <% elsif (kcal) > current_user.quiz.kcal.to_i+50 %>
+                <font color = "#ff0000">Today you have eaten a lot!</font>
+            <% else %>
+                <font color = "#00cc00">Good! You have eaten just right!</font>
             <% end %>
             
             <br><br>
-        
-            You have to work harder to reach your target weight: <br>
-            <b><%= current_user.quiz.target_weight %></b>
+            
+            <% if current_user.quiz.weight.to_f-current_user.quiz.target_weight.to_f > 0 %>
+                You have to work harder to reach your target weight: <br>
+                <b><%= current_user.quiz.weight.to_f-current_user.quiz.target_weight.to_f %> kg to lose!</b>
+            <% else %>
+                <font color = "#00cc00">Congrats! You reached your target weight!</font>
+            <% end %>
             
             <br><br>
             
             <% if current_user.quiz.sport %>
-                <font color = "#00cc00">You are doing physical activity! Good Work!</font>
+                <font color = "#00cc00">You are doing physical activity! Good work!</font>
             <% else %>
                 <font color = "#ff0000">You have to work more on your physical activity! Hold on!</font>
             <% end %>

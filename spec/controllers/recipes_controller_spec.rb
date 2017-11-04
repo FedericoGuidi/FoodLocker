@@ -7,6 +7,8 @@ describe RecipesController, type: :controller do
     
     after(:all) do
         @recipe.user.destroy
+        Recipe.last.destroy
+        Recipe.last.destroy
     end
     
     describe "GET #new" do
