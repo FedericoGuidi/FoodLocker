@@ -1,5 +1,7 @@
 <h1> <%= @recipe.title %></h1>
 
+<%= image_tag @recipe.photo.url if @recipe.photo? %>
+
 <h4>Kcals: <%= @recipe.kcal %></h4>
 
 <p>Ingredients: <%= @recipe.ingredients %></p>

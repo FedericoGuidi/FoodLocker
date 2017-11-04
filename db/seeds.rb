@@ -15,7 +15,7 @@ User.create!(name:  "Admin User",
              activated: true,
              activated_at: Time.zone.now)
 Diary.create!(user_id: "1")
-Day.create!(diary_id: "1")
+Day.create!(diary_id: "1", date: "2017-10-22")
 Quiz.create!(user_id: 1, name: "Admin",
                 gender: "M",
                 height: "1.70",

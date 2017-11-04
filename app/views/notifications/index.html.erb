@@ -1,6 +1,5 @@
 <% provide(:title, 'Notifications') %>
 <h1>Notifications</h1>
-
     <% if !current_user.notifications.any? %>
          <% if !current_user.eat_time.blank? %>
             <% if current_user.eat_time.to_s(:time) <= DateTime.now.to_s(:time) %>
@@ -53,14 +52,20 @@
         
     <% end %>
 
-    
-
 <%# if current_user.notifications.last.time.to_s!=DateTime.now.to_date.to_s %>
     <%# @diary.days.create(date: DateTime.now.to_date) %>
 <%# end %>
 
-<ul class="notifications">
-    <% current_user.notifications.each do |notification| %>
-        <%=notification.time.to_s(:time)%> <%=notification.created_at.to_date.to_s %>| <%= notification.content %><br>
-    <% end %>
-</ul>
+<% if !current_user.notifications.any? %>
+    <h2>You have no notifications.</h2>
+<% end %>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+    <ul class="notifications">
+        <% current_user.notifications.each do |notification| %>
+            <%=notification.time.to_s(:time)%>, <%=notification.created_at.to_date.strftime("%d %b %Y") %> | <%= notification.content %><br>
+        <% end %>
+    </ul>
+        </div>
+</div>

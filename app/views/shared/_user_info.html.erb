@@ -1,4 +1,21 @@
-<%#= link_to gravatar_for(current_user, size: 50), current_user %>
-<h1><%= current_user.name %></h1>
+
+<section class="user_info">
+            <aside style="float: left; border: 1px solid #eaeaea;
+                          border-radius: 5px;
+                          -moz-border-radius: 5px;
+                          -webkit-border-radius: 5px;">
+                
+            <%= image_tag current_user.avatar.thumb.url, style: "z-index: -10000;
+                                                          -moz-border-radius: 5px;
+                                                          -webkit-border-radius: 5px;" %>
+                
+            </aside>
+            <aside style="padding-left: 110px">
+                <h1><%= current_user.name %></h1>
+                <% if !current_user.nickname.blank? %>
+                    <h2>@<%= current_user.nickname %></h2>
+                <% end %>
+            </aside>
+        </section>
 <span><%= link_to "view my profile", current_user %></span>
 <span><%= pluralize(current_user.microposts.count, "micropost") %></span>

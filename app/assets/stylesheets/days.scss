@@ -1,3 +1,28 @@
 // Place all the styles related to the Days controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.day-date {
+    text-align: center;
+    h2 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+}
+
+.day-stats {
+    text-align: center;
+    border-radius: 10px;
+    border: 2px dotted #ec3d47;
+    padding: 5px;
+}
+
+.days {
+    list-style: none;
+    margin: 0;
+    li {
+        overflow: auto;
+        padding: 10px 0;
+        border-bottom: 1px solid #eaeaea;
+    }
+}

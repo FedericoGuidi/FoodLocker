@@ -18,7 +18,8 @@
             <%= f.label :directions %>
                 <%= f.text_area :directions,size:'20x10', class: 'form-control' %>
 
-            <%= f.file_field :photo %>
+            <%= f.file_field :photo, class: "btn btn-primary" %>
+            <br>
             <%= f.submit "Save changes", class: "btn btn-primary" %>
         <% end %>
     </div>

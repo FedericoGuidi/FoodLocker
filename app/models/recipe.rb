@@ -5,4 +5,6 @@ class Recipe < ApplicationRecord
   validates :kcal, presence: true, format: {with: /[0-9]+/, message: "Attention! Insert a correct format!"}
   validates :ingredients, presence: true
   validates :directions, presence: true
+    
+    mount_uploader :photo, PictureUploader
 end

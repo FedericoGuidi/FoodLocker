@@ -12,24 +12,33 @@
 <div class="row">
     <aside class="col-md-4">
         <section class="user_info">
-            <h1>
-                <% if @user.avatar? %>
-                    <%= image_tag @user.avatar.thumb.url %>
+            <aside style="float: left; border: 1px solid #eaeaea;
+                          border-radius: 5px;
+                          -moz-border-radius: 5px;
+                          -webkit-border-radius: 5px;">
+            <%= image_tag @user.avatar.thumb.url, style: "z-index: -10000;
+                                                          -moz-border-radius: 5px;
+                                                          -webkit-border-radius: 5px;" %>
+                
+            </aside>
+            <aside style="padding-left: 110px">
+                <h1><%= @user.name %></h1>
+                <% if !@user.nickname.blank? %>
+                    <h2>@<%= @user.nickname %></h2>
                 <% end %>
-                <%= @user.name %>
-                <%= @user.nickname %>
-            </h1>
+            </aside>
         </section>
         <section class="stats">
             <%= render 'shared/stats' %>
         </section>
         <% if current_user.admin? %>
-        <%= link_to 'Edit', edit_user_path %>
+        <h4>Admin panel</h4>
+        <%= link_to 'Edit', edit_user_path, class: "btn btn-danger" %>
         <% end %>
         <% if !@user.is_private || (current_user.following?(@user) && @user.is_private) || current_user?(@user) || current_user.admin?%>
         <section>
             <% if current_user.id != @user.id %>
-                <%= link_to 'Private message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post'%>
+                <%= link_to 'Private message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-primary"%>
             <% end %>
         </section>
         
@@ -37,7 +46,8 @@
             <% if current_user.diary.days.last.nil? %>
                <% current_user.check_day %>
             <% end %>
-        <section>
+        <h3>Your activity</h3>
+        <section id="user_activity">
         Your body mass index category is: <br>
             <% imc = (((current_user.quiz.weight.to_f)/(current_user.quiz.height.to_f*current_user.quiz.height.to_f)).round(2)) %>
             <% if imc>=40.00 %>
@@ -58,27 +68,22 @@
                 <font color = "#ff0000"><b><%= imc %> Very severely underweight</b></font>
             <% end %>
            
-        </section>
+            <br><br>
         
-        <section>
             <% kcal=current_user.diary.days.last.breakfast_kcal.to_i+current_user.diary.days.last.snack_kcal.to_i+current_user.diary.days.last.lunch_kcal.to_i+current_user.diary.days.last.dinner_kcal.to_i %>
             <% if (current_user.quiz.kcal.to_i)<=(kcal+200) && (current_user.quiz.kcal.to_i)>=(kcal-200) %>
                 <font color = "#00cc00">You have reached your daily kcals!</font>
             <% else %>
                 <font color = "#ff0000">You have to eat more!</font>
             <% end %>
-         
-        </section>
-        <br>
-        <br>
-        <section>
+            
+            <br><br>
+        
             You have to work harder to reach your target weight: <br>
             <b><%= current_user.quiz.target_weight %></b>
-        
-        </section>
-        <br>
-        <br>
-        <section>
+            
+            <br><br>
+            
             <% if current_user.quiz.sport %>
                 <font color = "#00cc00">You are doing physical activity! Good Work!</font>
             <% else %>
@@ -86,11 +91,10 @@
             <% end %>
         </section>
         <% end %>
-        <br>
-        <br>
+    
         <section>
             <% if current_user.id == @user.id %> 
-            <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.foodlocker.com<%= user_path %>" target="_blank" class="btn btn-success clearfix">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.foodlocker.com<%= user_path %>" target="_blank" class="btn btn-primary">
                 Share on Facebook
             </a>
             <% end %>

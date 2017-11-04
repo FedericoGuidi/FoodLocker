@@ -14,7 +14,7 @@
             <% end %>
             
             <%= f.label :nickname %>
-                <%= f.text_field :nickname, class: 'form-control' %>
+            <%= f.text_field :nickname, class: 'form-control' %>
 
             <%= f.label :email %>
             <% if !@user.fb %>
@@ -30,50 +30,61 @@
                 <%= f.label :password_confirmation, "Confirmation" %>
                 <%= f.password_field :password_confirmation, class: 'form-control' %>
             <% end %>
+        
             <% if current_user.admin? && current_user!=@user%>
                <%= f.label :banned, class: "checkbox inline" do %>
-                <%= f.check_box :banned %>
-            <span>Ban user</span>
-           <% end %>
-           <% end %>
+                    <%= f.check_box :banned %>
+                    <span>Ban user</span>
+                <% end %>
+            <% end %>
         
             <% if current_user.admin? && current_user!=@user%>
                <%= f.label :admin, class: "checkbox inline" do %>
-                <%= f.check_box :admin %>
-            <span>Admin</span>
-           <% end %>
-           <% end %>
+                  <%= f.check_box :admin %>
+                  <span>Admin</span>
+               <% end %>
+            <% end %>
             <br>
             
             <%= f.label :is_private, class: "checkbox inline" do %>
                 <%= f.check_box :is_private %>
-            <span>Private Profile</span>
-           <% end %>
+                <span>Private Profile</span>
+            <% end %>
             
             <br>
             <h4>Notification Settings</h4>
-            <%= f.label :eat_time %>
-            <%= f.text_field(:eat_time, :value => !current_user.eat_time ? '' : current_user.eat_time.strftime("%H:%M"), class: 'form-control')%>
-            <%= f.label :drink_time %>
-             <%= f.text_field(:drink_time, :value => !current_user.drink_time ? '' : current_user.drink_time.strftime("%H:%M"), class: 'form-control')%>
-            <%= f.label :workout_time %>
-             <%= f.text_field(:workout_time, :value => !current_user.workout_time ? '' : current_user.workout_time.strftime("%H:%M"), class: 'form-control')%>
-            <%= f.label :weight_time %>
-             <%= f.text_field(:weight_time, :value => !current_user.weight_time ? '' : current_user.weight_time.strftime("%H:%M"), class: 'form-control')%>
-        
-           <br>
-            <%= f.submit "Save changes", class: "btn btn-primary" %>
-            <br/><br/>
+        <div class="row">
+            <div class="col-md-3">
+                <%= f.label :eat_time %>
+                <%= f.text_field(:eat_time, :value => !current_user.eat_time ? '' : current_user.eat_time.strftime("%H:%M"), class: 'form-control')%>
+            </div>
+            <div class="col-md-3">
+                <%= f.label :drink_time %>
+                <%= f.text_field(:drink_time, :value => !current_user.drink_time ? '' : current_user.drink_time.strftime("%H:%M"), class: 'form-control')%>
+            </div>
+            <div class="col-md-3">
+                <%= f.label :workout_time %>
+                <%= f.text_field(:workout_time, :value => !current_user.workout_time ? '' : current_user.workout_time.strftime("%H:%M"), class: 'form-control')%>
+            </div>
+            <div class="col-md-3">
+                <%= f.label :weight_time %>
+                <%= f.text_field(:weight_time, :value => !current_user.weight_time ? '' : current_user.weight_time.strftime("%H:%M"), class: 'form-control')%>
+            </div>
+        </div>
+        <br/>
             
         <h4>Avatar</h4>
-            <%= f.file_field :avatar %>
-        <% end %>
+        <%= f.file_field :avatar, style: "border: 0px" %>
         <div class="gravatar_edit">
-            <% if @user.avatar? %>
             <%= image_tag @user.avatar.thumb.url %>
-            <% end %>
         </div>
-        <div class="google_auth">
+        
+        <%= f.submit "Save changes", class: "btn btn-primary" %>
+        <% end %>
+        
+        <div class="row">
+            <div class="col-md-12">
+            <br>
             <% if google_auth @user %>
                 You have 2FA enabled!
                 <%= button_to "Disable Google Authenticator", configure_path, :method => "delete", class: "btn btn-primary" %>
@@ -81,8 +92,11 @@
                 Do you want to enable Google Authenticator?
                 <%= button_to "Configure Google Authenticator", configure_path, :method => "get", class: "btn btn-primary" %>
             <% end %>
+            </div>
         </div>
-        <br/>
+        
+        <br>
+            
         <%= button_to "Delete your account", self_destroy_user_path, action: :self_destroy, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
     </div>
 </div>

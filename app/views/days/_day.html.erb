@@ -1,58 +1,97 @@
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-                    <%=@diary.days.last.date%>
-                    <br>
-            You still have to drink: <%= current_user.quiz.water.to_f-@diary.days.last.water.to_f %>
-            <br>
-            You still have to eat: <%= current_user.quiz.kcal.to_i-(@diary.days.last.breakfast_kcal.to_i+@diary.days.last.snack_kcal.to_i+@diary.days.last.lunch_kcal.to_i+@diary.days.last.dinner_kcal.to_i)%>
-            <br>
-            <%= (((current_user.quiz.weight.to_f-current_user.quiz.target_weight.to_f)/(1.5))*7).ceil %>
-            days until your goal!!
-        
-            <%= form_for @diary.days.last, :html => { :multipart => true } do |f| %>
-                    
-                    <br>
-                    
-                    
-        
-                    <%=f.label :breakfast %>
-                    <%=f.text_field :breakfast %>
-                
-                    <%=f.label :breakfast_kcal %>
-                    <%=f.text_field :breakfast_kcal %>
-        
-                    <%=f.label :snack %>
-                    <%=f.text_field :snack %>
-        
-                    <%=f.label :snack_kcal %>
-                    <%=f.text_field :snack_kcal %>
-        
-                    <%=f.label :lunch %>
-                    <%=f.text_field :lunch %>
-                
-                    <%=f.label :lunch_kcal %>
-                    <%=f.text_field :lunch_kcal %>
-        
-                    <%=f.label :dinner %>
-                    <%=f.text_field :dinner %>
-        
-                    <%=f.label :dinner_kcal %>
-                    <%=f.text_field :dinner_kcal %>
-        
-                    <%=f.label :water %>
-                    <%=f.text_field :water %>
-                   
-        
-        
-                <%= f.label :note %>
-                <%= f.text_area :note,size:'20x10', class: 'form-control' %>
-        
-            <br>
-            <%= f.submit "Save changes", class: "btn btn-primary" %>
-            <br/>
-            <% end %>
+        <div class="day-date">
+            <h2><%= @diary.days.last.date.strftime("%d %B %Y") %></h2>
+        </div>
         <br>
-        <td><%= link_to 'Index', days_path %></td>
+        <div class="day-stats">
+            <% if (current_user.quiz.water.to_f-@diary.days.last.water.to_f) > 0 %>
+                You still have to drink: <%= current_user.quiz.water.to_f-@diary.days.last.water.to_f %>
+            <% else %>
+                <b>Great!</b> Today you have drunk at least <%= current_user.quiz.water.to_f %> water litres!
+            <% end %>
+            <br>
+            <% if (@diary.days.last.breakfast_kcal.to_i+@diary.days.last.snack_kcal.to_i+@diary.days.last.lunch_kcal.to_i+@diary.days.last.dinner_kcal.to_i) < current_user.quiz.kcal.to_i-50 %>
+                You still have to eat: <%= current_user.quiz.kcal.to_i-(@diary.days.last.breakfast_kcal.to_i+@diary.days.last.snack_kcal.to_i+@diary.days.last.lunch_kcal.to_i+@diary.days.last.dinner_kcal.to_i)%>
+            <% elsif (@diary.days.last.breakfast_kcal.to_i+@diary.days.last.snack_kcal.to_i+@diary.days.last.lunch_kcal.to_i+@diary.days.last.dinner_kcal.to_i) > current_user.quiz.kcal.to_i+50 %>
+                Today you have eaten a lot!
+            <% else %>
+                Good! You have eaten just right!
+            <% end %>
+            <br>
+            <%= (((current_user.quiz.weight.to_f-current_user.quiz.target_weight.to_f)/(1.5))*7).ceil %> days until your goal!
+            <br>
+        </div>
     </div>
+</div>
+
+
+    <%= form_for @diary.days.last, :html => { :multipart => true } do |f| %>                    
+        <br>   
+<div class="row">
+    <div class="col-md-4 col-md-offset-3">
+        <%=f.label :breakfast %>
+        <%=f.text_field :breakfast, class: 'form-control' %>
+    </div>
+    <div class="col-md-2">
+        <%=f.label :breakfast_kcal %>
+        <%=f.text_field :breakfast_kcal, class: 'form-control'%>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-md-offset-3">
+        <%=f.label :snack %>
+        <%=f.text_field :snack, class: 'form-control' %>
+    </div>
+    <div class="col-md-2">
+        <%=f.label :snack_kcal %>
+        <%=f.text_field :snack_kcal, class: 'form-control' %>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-md-offset-3">
+        <%=f.label :lunch %>
+        <%=f.text_field :lunch, class: 'form-control' %>
+    </div>
+    <div class="col-md-2">
+        <%=f.label :lunch_kcal %>
+        <%=f.text_field :lunch_kcal, class: 'form-control' %>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-md-offset-3">
+        <%=f.label :dinner %>
+        <%=f.text_field :dinner, class: 'form-control' %>
+    </div>
+    <div class="col-md-2">
+        <%=f.label :dinner_kcal %>
+        <%=f.text_field :dinner_kcal, class: 'form-control' %>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%=f.label :water %>
+        <%=f.text_field :water, class: 'form-control' %>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= f.label :note %>
+        <%= f.text_area :note,size:'20x10', class: 'form-control' %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-3">
+        <br>
+        <%= f.submit "Save changes", class: "btn btn-primary" %>
+        <br>
+    </div>
+    <% end %>
+    <br>
+    <div class="col-md-2">
+        <%= link_to 'Previous days', days_path, class: "btn btn-primary", style: "width: 100%"%>
+    </div>
+</div>
 </div>

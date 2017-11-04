@@ -3,7 +3,6 @@
 
 <ul class="days">
     <% current_user.diary.days.each do |day| %>
-        <td><%= link_to day.date, day %></td>
+        <li><%= link_to day.date.strftime("%d %B %Y"), day %></li>
     <% end %>
 </ul>
-

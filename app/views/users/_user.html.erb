@@ -1,7 +1,5 @@
 <li>
-    <% if user.avatar? %>
     <%= link_to image_tag(user.avatar.tiny.url), user %>
-    <% end %>
     <%= link_to user.name, user %>
     <% if current_user.admin? && !current_user?(user) %>
         | <%= link_to "delete", user, method: :delete,

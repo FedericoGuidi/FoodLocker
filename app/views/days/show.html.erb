@@ -1,14 +1,54 @@
 <p>
-    <%= @day.date %>
-    <%= @day.breakfast %>
-    <%= @day.breakfast_kcal %>
-    <%= @day.snack %>
-    <%= @day.snack_kcal %>
-    <%= @day.lunch %>
-    <%= @day.lunch_kcal %>
-    <%= @day.dinner %>
-    <%= @day.dinner_kcal %>
-    <%= @day.note %>
+    <h2><%= @day.date.strftime("%d %B %Y") %></h2><br>
+    <% if (!@day.breakfast && !@day.lunch && !@day.dinner && !@day.snack && !@day.breakfast_kcal && !@day.lunch_kcal && !@day.dinner_kcal && !@day.snack_kcal) || (@day.breakfast.empty? && @day.lunch.empty? && @day.dinner.empty? && @day.snack.empty? && @day.breakfast_kcal.empty? && @day.lunch_kcal.empty? && @day.dinner_kcal.empty? && @day.snack_kcal.empty?) %>
+        Nothing to see here.
+    <% else %>
+        <% if @day.breakfast %>
+            <% if !@day.breakfast.empty? %>
+                Breakfast: <%= @day.breakfast %>
+            <% end %>
+        <% end %>
+        <% if @day.breakfast_kcal %>
+            <% if !@day.breakfast_kcal.empty? %>
+                (<%= @day.breakfast_kcal %> kcal)
+            <% end %>
+        <% end %>
+        <% if @day.snack %>
+            <% if !@day.snack.empty? %>
+                <br>Snack: <%= @day.snack %>
+            <% end %>
+        <% end %>
+        <% if @day.snack_kcal %>
+            <% if !@day.snack_kcal.empty? %>
+                (<%= @day.snack_kcal %> kcal)
+            <% end %>
+        <% end %>
+        <% if @day.lunch %>
+            <% if !@day.lunch.empty? %>
+                <br>Lunch: <%= @day.lunch %>
+            <% end %>
+        <% end %>
+        <% if @day.lunch_kcal %>
+            <% if !@day.lunch_kcal.empty? %>
+                (<%= @day.lunch_kcal %> kcal)
+            <% end %>
+        <% end %>
+        <% if @day.dinner %>
+            <% if !@day.dinner.empty? %>
+                <br>Dinner: <%= @day.dinner %>
+            <% end %>
+        <% end %>
+        <% if @day.dinner_kcal %>
+            <% if !@day.dinner_kcal.empty? %>
+                (<%= @day.dinner_kcal %> kcal)
+            <% end %>
+        <% end %>
+        <% if @day.note %>
+            <% if !@day.note.empty? %>
+                <br>Note: <%= @day.note %>
+            <% end %>
+        <% end %>
+    <% end %>
     
 </p>
 

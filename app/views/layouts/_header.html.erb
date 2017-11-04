@@ -8,6 +8,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to "Home",   root_path %></li>
                 <% if logged_in? %>
+                    <li><%= link_to "Recipes", recipes_path %></li>
+                <% end %>
+                    <li><a href="/map">GPS</a></li>
+                <% if logged_in? %>
                     <li><%= link_to "Users", users_path %></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -23,7 +27,6 @@
                             <li><%= link_to "Quiz", edit_quiz_path(current_user) %></li>
                             <li><%= link_to "Diary", edit_diary_path(current_user) %></li>
                             <li><%= link_to "Notifications", notifications_path %></li>
-                            <li><%= link_to "Recipes", recipes_path %></li>
                             <li class="divider"></li>
                             <li>
                                 <%= link_to "Log out", logout_path, method: :delete %>

@@ -1,9 +1,7 @@
 <li id="micropost-<%= micropost.id %>">
-    <% if micropost.user.avatar? %>
-    <%= link_to image_tag(micropost.user.avatar.micropost.url), micropost.user %>
-    <% end %>
+    <span style="float:left"><%= link_to image_tag(micropost.user.avatar.micropost.url), micropost.user %></span>
     
-    <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
+    <span class="user" style="padding-left: 10px"><%= link_to micropost.user.name, micropost.user %></span>
     <span class="content">
         <%= micropost.content %>
         <%= image_tag micropost.picture.url if micropost.picture? %>
