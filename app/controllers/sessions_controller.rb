@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     
     def create
         user = User.find_by(email: params[:session][:email].downcase)
-        if !user.admin && Site.first.suspended?
+        if user && !user.admin && Site.first.suspended?
             redirect_to suspended_path
         else
             if user && user.authenticate(params[:session][:password])
